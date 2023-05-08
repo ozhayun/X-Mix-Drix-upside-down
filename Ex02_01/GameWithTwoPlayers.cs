@@ -10,15 +10,19 @@ namespace Ex02_01
         private Board m_Board;
         private Player m_FirstPlayer;
         private Player m_SecondPlayer;
-        private bool m_IsGameFinished;
+        private bool m_IsPlayerWon;
+        private bool m_IsTie;
+        private bool m_IsPlayerWantsToExit;
         private bool m_IsFirstPlayerMove;
-
+        
         public GameWithTwoPlayers(Board gameBoard)
         {
             m_Board = gameBoard;
-            m_FirstPlayer = new Player();
-            m_SecondPlayer = new Player();
-            m_IsGameFinished = false;
+            m_FirstPlayer = new Player('X', 0);
+            m_SecondPlayer = new Player('O', 0);
+            m_IsPlayerWon = false;
+            m_IsTie = false;
+            m_IsPlayerWantsToExit = false;
             m_IsFirstPlayerMove = true;
         }
 
@@ -26,22 +30,81 @@ namespace Ex02_01
         {
             GamePrints gamePrints = new GamePrints();
 
-            while (!m_IsGameFinished)
+            while (!m_IsPlayerWon && !m_IsPlayerWantsToExit && !m_IsTie)
             {
                 gamePrints.PrintBoard(m_Board);
 
                 if (m_IsFirstPlayerMove)
                 {
-                    m_FirstPlayer.Move(ref m_Board, ref m_IsGameFinished);
+                    m_FirstPlayer.Move(ref m_Board, ref m_IsPlayerWon, ref m_IsPlayerWantsToExit);
                 }
                 else
                 {
-                    m_SecondPlayer.Move(ref m_Board, ref m_IsGameFinished);
+                    m_SecondPlayer.Move(ref m_Board, ref m_IsPlayerWon, ref m_IsPlayerWantsToExit);
                 }
-                m_Board.checkIfWin();
-                m_Board.checkIfTie();
+
+                CheckForWinningAndAskForNewGame(gamePrints);
+                CheckForTieAndAskForNewGame(gamePrints);
+                CheckForExitAndAskForNewGame(gamePrints);
                 m_IsFirstPlayerMove = !m_IsFirstPlayerMove;
             }
+        }
+
+        public void GetPlayersSign()
+        {
+            char resSign;
+            if (m_IsFirstPlayerMove)
+            {
+                resSign = m_FirstPlayer.Sign;
+            }
+            else
+            {
+                resSign = m_SecondPlayer.Sign;
+            }
+
+            return resSign;
+        }
+
+        public void CheckForWinningAndAskForNewGame(GamePrints gamePrints)
+        {
+            if (m_IsPlayerWon)
+            {
+                gamePrints.PrintWinnig(GetPlayersSign());
+
+                if (gamePrints.AskUserForNewGame())
+                {
+                    m_IsPlayerWon = false;
+                    m_Board.ClearBoard();
+                }
+            }
+        }
+
+        public void CheckForTieAndAskForNewGame(GamePrints gamePrints)
+        {
+            if (m_Board.ThereIsTie())
+            {
+                gamePrints.PrintTie();
+
+                if (gamePrints.AskUserForNewGame())
+                {
+                    m_IsTie = false;
+                    m_Board.ClearBoard();
+                }
+                else
+                {
+                    m_IsTie = true;
+                }
+            }
+        }
+
+        public void CheckForExitAndAskForNewGame(GamePrints gamePrints)
+        {
+            if (m_IsPlayerWantsToExit && gamePrints.AskUserForNewGame())
+            {
+                m_IsPlayerWantsToExit = false;
+                m_Board.ClearBoard();
+            }
+
         }
     }
 }
