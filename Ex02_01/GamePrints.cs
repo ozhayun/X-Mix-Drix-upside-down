@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ex02_01
 {
-    class GamePrints
+    public class GamePrints
     {
         public void PrintBoard(Board board)
         {
