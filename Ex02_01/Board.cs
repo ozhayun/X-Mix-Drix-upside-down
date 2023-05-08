@@ -7,6 +7,8 @@ namespace Ex02_01
 {
     public class Board
     {
+        const char k_BlankChar = ' ';
+
         private int m_Size;
         private char[,] m_Board;
 
@@ -29,9 +31,19 @@ namespace Ex02_01
             }
         }
 
-        public char getCellValueInBoard(int i_row, int i_column)
+        public char getCellValueInBoard(int i_Row, int i_Column)
         {
-            return m_Board[i_row, i_column];
+            return m_Board[i_Row, i_Column];
+        }
+
+        public bool isThisCellClear(int i_Row, int i_Column)
+        {
+            return getCellValueInBoard(i_Row, i_Column) == k_BlankChar;
+        }
+
+        public void AddPlayerSign(int i_Row, int i_Column, char i_UserSign)
+        {
+            m_Board[i_Row, i_Column] = i_UserSign;
         }
 
         public void ClearBoard()
@@ -40,7 +52,7 @@ namespace Ex02_01
             {
                 for (int j = 0; j < m_Size; j++)
                 {
-                    m_Board[i, j] = ' ';
+                    m_Board[i, j] = k_BlankChar;
                 }
             }
         }

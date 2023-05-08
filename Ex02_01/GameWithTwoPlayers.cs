@@ -32,11 +32,11 @@ namespace Ex02_01
 
                 if (m_IsFirstPlayerMove)
                 {
-                    m_FirstPlayer.Move(ref m_Board, out m_IsGameFinished);
+                    m_FirstPlayer.Move(ref m_Board, ref m_IsGameFinished);
                 }
                 else
                 {
-                    m_SecondPlayer.Move(ref m_Board, out m_IsGameFinished);
+                    m_SecondPlayer.Move(ref m_Board, ref m_IsGameFinished);
                 }
                 m_Board.checkIfWin();
                 m_Board.checkIfTie();
