@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Ex02_01
 {
-    class GamePlay
+    class PlayTheGame
     {
         private enum eGameType
         {
