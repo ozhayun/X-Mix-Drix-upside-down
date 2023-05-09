@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Ex02_01
 {
@@ -10,32 +7,56 @@ namespace Ex02_01
         private char m_Sign;
         private int m_Score;
 
-        public void Move(ref Board io_board, ref bool o_IsGameFinished)
+        public Player(char i_Sign, int i_Score)
+        {
+            m_Sign = i_Sign;
+            m_Score = i_Score;
+        }
+
+        public char Sign
+        {
+            get
+            {
+                return m_Sign;
+            }
+            set
+            {
+                m_Sign = value;
+            }
+        }
+
+        public void Move(ref Board io_Board, ref bool m_IsPlayerWon, ref bool io_IsPlayerWantsToExit)
         {
             int row = -1, column = -1;
 
-            GetRowAndColumnFromUser(io_board.Size, ref row, ref column, ref o_IsGameFinished);
+            GetRowAndColumnFromUser(io_Board.Size, ref row, ref column, ref io_IsPlayerWantsToExit);
 
-            while(!o_IsGameFinished && !io_board.isThisCellClear(row, column))
+            while(!io_IsPlayerWantsToExit && !io_Board.isThisCellClear(row, column))
             {
-                GetRowAndColumnFromUser(io_board.Size, ref row, ref column, ref o_IsGameFinished);
+                GetRowAndColumnFromUser(io_Board.Size, ref row, ref column, ref io_IsPlayerWantsToExit);
             }
 
-            io_board.AddPlayerSign(row, column, m_Sign);
-            
+            io_Board.AddPlayerSign(row, column, m_Sign);
+
+            if(io_Board.CheckIfWin(row, column, m_Sign))
+            {
+                m_IsPlayerWon = true;
+                m_Score++;
+            }
+
         }
 
-        public void GetRowAndColumnFromUser(int i_BoardSize, ref int io_Row, ref int io_Column, ref bool io_IsGameFinished)
+        public void GetRowAndColumnFromUser(int i_BoardSize, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToExit)
         {
             Console.WriteLine("Please enter your next move: ");
-            io_Row = GetNumberThatFitBoardSize(i_BoardSize, ref io_IsGameFinished);
-            if (!io_IsGameFinished)
+            io_Row = GetNumberThatFitBoardSize(i_BoardSize, ref io_IsPlayerWantsToExit);
+            if (!io_IsPlayerWantsToExit)
             {
-                io_Column = GetNumberThatFitBoardSize(i_BoardSize, ref io_IsGameFinished);
+                io_Column = GetNumberThatFitBoardSize(i_BoardSize, ref io_IsPlayerWantsToExit);
             }
         }
 
-        public int GetNumberThatFitBoardSize(int i_BoardSize, ref bool io_IsGameFinished)
+        public int GetNumberThatFitBoardSize(int i_BoardSize, ref bool io_IsPlayerWantsToExit)
         {
             int numberFromUser = -1;
             bool isValid = false;
@@ -45,7 +66,7 @@ namespace Ex02_01
                 string input = Console.ReadLine();
                 if (input.Equals('Q'))
                 {
-                    io_IsGameFinished = true;
+                    io_IsPlayerWantsToExit = true;
                     isValid = true;
                 }
 
@@ -66,4 +87,4 @@ namespace Ex02_01
 
     }
 }
-}
+

@@ -12,11 +12,10 @@ namespace Ex02_01
         private int m_Size;
         private char[,] m_Board;
 
-        public Board(int i_boardSize)
+        public Board()
         {
-            m_Size = i_boardSize;
-            m_Board = new char[m_Size, m_Size];
-            ClearBoard();
+            m_Size = 0;
+            m_Board = null;
         }
 
         public int Size
@@ -31,7 +30,24 @@ namespace Ex02_01
             }
         }
 
-        public char getCellValueInBoard(int i_Row, int i_Column)
+        public char[,] BoardMatrix
+        {
+            set
+            {
+                m_Board = value;
+            }
+        }
+        public bool IsValidBoardSize(int i_BoardSizeToCheck)
+        {
+            bool isValidBoardSize = false;
+            if (i_BoardSizeToCheck >= 3 && i_BoardSizeToCheck <= 9)
+            {
+                isValidBoardSize = true;
+            }
+
+            return isValidBoardSize;
+        }
+    public char getCellValueInBoard(int i_Row, int i_Column)
         {
             return m_Board[i_Row, i_Column];
         }
@@ -57,9 +73,83 @@ namespace Ex02_01
             }
         }
 
-        public void checkIfWin()
+        public bool CheckIfWin(int i_Row, int i_Column, char i_Sign)
         {
+            bool winning = false;
+            if(WinInRow(i_Sign, i_Row) || WinInColumn(i_Sign, i_Column) || WinInDiagonal(i_Sign, i_Row, i_Column))
+            {
+                winning = true;
+            }
+            return winning;
+        }
 
+        public bool WinInRow(char i_Sign, int i_Row)
+        {
+            bool winning = true;
+            for(int i = 0; i < m_Size; i++)
+            {
+                if(m_Board[i_Row, i] != i_Sign)
+                {
+                    winning = false;
+                }
+            }
+            return winning;
+        }
+
+        public bool WinInColumn(char i_Sign, int i_Column)
+        {
+            bool winning = true;
+            for (int i = 0; i < m_Size; i++)
+            {
+                if (m_Board[i, i_Column] != i_Sign)
+                {
+                    winning = false;
+                }
+            }
+            return winning;
+        }
+
+        public bool WinInDiagonal(char i_Sign, int i_Row, int i_Column)
+        {
+            bool winning = true;
+            
+            if (i_Row == i_Column)
+            {
+                winning =  WinInMainDiagonal(i_Sign);
+            }
+
+            if(i_Row + i_Column == m_Size + 1)
+            {
+                winning = WinInSecondaryDiagonal(i_Sign);
+            }
+
+            return winning;
+        }
+
+        public bool WinInMainDiagonal(char i_Sign)
+        {
+            bool winning = true;
+            for (int i = 0; i < m_Size; i++)
+            {
+                if (m_Board[i, i] != i_Sign)
+                {
+                    winning = false;
+                }
+            }
+            return winning;
+        }
+
+        public bool WinInSecondaryDiagonal(char i_Sign)
+        {
+            bool winning = true;
+            for (int i = 0; i < m_Size; i++)
+            {
+                if (m_Board[i, (m_Size + 1 - i)] != i_Sign)
+                {
+                    winning = false;
+                }
+            }
+            return winning;
         }
 
         public void checkIfTie()
