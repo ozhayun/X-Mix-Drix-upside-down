@@ -8,3 +8,5 @@ C:\Users\salit\Documents\MTA\Third\#C\B23 Ex02 Salit 207007600 Oz 209368695\Ex02
 C:\Users\salit\Documents\MTA\Third\#C\B23 Ex02 Salit 207007600 Oz 209368695\Ex02_01\obj\Debug\Ex02_01.csproj.CoreCompileInputs.cache
 C:\Users\salit\Documents\MTA\Third\#C\B23 Ex02 Salit 207007600 Oz 209368695\Ex02_01\obj\Debug\Ex0201.exe
 C:\Users\salit\Documents\MTA\Third\#C\B23 Ex02 Salit 207007600 Oz 209368695\Ex02_01\obj\Debug\Ex0201.pdb
+C:\Users\salit\Documents\MTA\Third\#C\B23 Ex02 Salit 207007600 Oz 209368695\Ex02_01\bin\Debug\Ex0201.exe
+C:\Users\salit\Documents\MTA\Third\#C\B23 Ex02 Salit 207007600 Oz 209368695\Ex02_01\bin\Debug\Ex0201.pdb

@@ -29,6 +29,7 @@ namespace Ex02_01
         public void Run()
         {
             UIDuringTheGame ui = new UIDuringTheGame();
+            int row = -1, column = -1;
 
             while (!m_IsPlayerLosed && !m_IsPlayerWantsToExit && !m_IsTie)
             {
@@ -36,14 +37,14 @@ namespace Ex02_01
 
                 if (m_IsFirstPlayerMove)
                 {
-                    m_FirstPlayer.Move(ui, ref m_Board, ref m_IsPlayerWantsToExit);
+                    m_FirstPlayer.Move(ui, ref m_Board, ref m_IsPlayerWantsToExit, ref row, ref column);
                 }
                 else
                 {
-                    m_SecondPlayer.Move(ui, ref m_Board, ref m_IsPlayerWantsToExit);
+                    m_SecondPlayer.Move(ui, ref m_Board, ref m_IsPlayerWantsToExit, ref row, ref column);
                 }
 
-                CheckGameStatus(GetPlayersSign(), ref m_IsPlayerLosed, ref m_IsTie, ref m_IsPlayerWantsToExit, ui);
+                CheckGameStatus(GetPlayersSign(), ref m_IsPlayerLosed, ref m_IsTie, ref m_IsPlayerWantsToExit, ui, row, column);
                 m_IsFirstPlayerMove = !m_IsFirstPlayerMove;
             }
         }
@@ -63,9 +64,9 @@ namespace Ex02_01
             return resSign;
         }
 
-        public void CheckGameStatus(char i_PlayerSign, ref bool io_IsPlayerLosed, ref bool io_IsTie, ref bool io_IsPlayerWantsToExit, UIDuringTheGame ui)
+        public void CheckGameStatus(char i_PlayerSign, ref bool io_IsPlayerLosed, ref bool io_IsTie, ref bool io_IsPlayerWantsToExit, UIDuringTheGame ui, int i_Row, int i_Column)
         {
-           if(m_Board.CheckForLosing(ui, GetPlayersSign(), ref io_IsPlayerLosed) || m_Board.CheckForTieAnd(ui) || m_IsPlayerWantsToExit)
+           if(m_Board.IsGameFinishedWithLost(ui, GetPlayersSign(), i_Row, i_Column) || m_Board.IsGameFinishedWithTie(ui) || m_IsPlayerWantsToExit)
             {
                 if (ui.IsUserWantNewGame())
                 {

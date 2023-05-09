@@ -15,13 +15,13 @@ namespace Ex02_01
             Board board = new Board();
 
             PrintStartMenu();
-            GetBoardSizeFromUser(board);
+            SetBoardFromUser(ref board);
             int typeOfGame = GetTypeOfGameFromUser();
 
             if (typeOfGame == (int)eGameType.OnePlayer)
             {
-                GameWithOnePlayer onePlayer = new GameWithOnePlayer(board);
-                onePlayer.Run();
+                //GameWithOnePlayer onePlayer = new GameWithOnePlayer(board);
+                //onePlayer.Run();
             }
             else if (typeOfGame == (int)eGameType.TwoPlayers)
             {
@@ -39,7 +39,7 @@ namespace Ex02_01
             Console.WriteLine("Welcome to X & O");
         }
 
-        public int GetBoardSizeFromUser(Board i_Board)
+        public void SetBoardFromUser(ref Board io_Board)
         {
             int boardSize = 0;
             bool isValid = false;
@@ -49,9 +49,9 @@ namespace Ex02_01
                 string input = Console.ReadLine();
                 if (int.TryParse(input, out boardSize))
                 {
-                    if (i_Board.IsValidBoardSize(boardSize))
+                    if (io_Board.IsValidBoardSize(boardSize))
                     {
-                        i_Board.BoardMatrix = new char[boardSize, boardSize];
+                        io_Board.BoardMatrix = new char[boardSize, boardSize];
                         isValid = true;
                     }
                     else
@@ -64,7 +64,6 @@ namespace Ex02_01
                     Console.WriteLine("Invalid input. Please enter a valid number.");
                 }
             }
-            return boardSize;
         }
 
         public int GetTypeOfGameFromUser()
@@ -88,11 +87,6 @@ namespace Ex02_01
                 }
                 else
                 {
-                    if (input.Equals('Q'))
-                    {
-                        gameType = -1;
-                        isValid = true;
-                    }
                     Console.WriteLine("Invalid input. Please enter a valid number.");
                 }
             }

@@ -9,16 +9,26 @@ namespace Ex02_01
     {
         public void PrintBoard(Board board)
         {
-            for (int i = 0; i < board.Size; i++)
+            for (int i = 0; i < board.BoardSize; i++)
             {
-                for (int j = 0; j < board.Size; j++)
+                for (int j = 0; j < board.BoardSize; j++)
                 {
                     Console.WriteLine(board.getCellValueInBoard(i, j));
                 }
             }
         }
+        public void GetRowAndColumnFromUserAndCheckQuiting(Board i_Board, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToExit)
+        {
+            GetValidRowAndColumnFromUserAndCheckQuiting(ref io_Row, ref io_Column, ref io_IsPlayerWantsToExit);
 
-        public void GetRowAnColumnFromUserAndCheckQ(ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToExit)
+            while (!io_IsPlayerWantsToExit && !i_Board.IsRowAndColumnFromUserIsValid(io_Row, io_Column))
+            {
+                Console.WriteLine("Invalid input");
+                GetValidRowAndColumnFromUserAndCheckQuiting(ref io_Row, ref io_Column, ref io_IsPlayerWantsToExit);
+            }
+        }
+
+        public void GetValidRowAndColumnFromUserAndCheckQuiting(ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToExit)
         {
             Console.WriteLine("Please enter your next move: ");
             io_Row = GetNumberFromUser(ref io_IsPlayerWantsToExit);
@@ -48,6 +58,19 @@ namespace Ex02_01
                 }
             }
             return numberFromUser;
+        }
+
+        public bool IsUserWantNewGame()
+        {
+            bool userWantsNewGame = false;
+            Console.WriteLine("Please enter y for new game");
+            String inputFromUser = Console.ReadLine();
+            if (inputFromUser.Equals('y'))
+            {
+                userWantsNewGame = true;
+            }
+
+            return userWantsNewGame;
         }
     }
 }

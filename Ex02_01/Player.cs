@@ -25,22 +25,12 @@ namespace Ex02_01
             }
         }
 
-        public void Move(UIDuringTheGame ui, ref Board io_Board, ref bool io_IsPlayerWantsToExit)
+        public void Move(UIDuringTheGame ui, ref Board io_Board, ref bool io_IsPlayerWantsToExit, ref int io_Row, ref int io_Column)
         {
-            int row = -1, column = -1;
-            GetRowAnColumnFromUserAndCheckQ(ui, ref row, ref column, ref io_IsPlayerWantsToExit);
-            io_Board.AddPlayerSign(row, column, m_Sign);
+            ui.GetRowAndColumnFromUserAndCheckQuiting(io_Board, ref io_Row, ref io_Column, ref io_IsPlayerWantsToExit);
+            io_Board.AddPlayerSign(io_Row, io_Column, m_Sign);
         }
 
-        public void GetRowAnColumnFromUserAndCheckQ(UIDuringTheGame ui, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToExit)
-        {
-            ui.GetRowAnColumnFromUserAndCheckQ(ref io_Row, ref io_Column, ref io_IsPlayerWantsToExit);
-
-            while (!io_IsPlayerWantsToExit && !io_Board.CheckIfRowAndColumnFromUserIsValid(io_Row, io_Column))
-            {
-                ui.GetRowAnColumnFromUserAndCheckQ(ref io_Row, ref io_Column, ref io_IsPlayerWantsToExit);
-            }
-        }
     }
 }
 
