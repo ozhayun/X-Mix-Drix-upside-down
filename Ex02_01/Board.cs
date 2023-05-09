@@ -157,12 +157,7 @@ namespace Ex02_01
 
         }
 
-        public void CheckGameStatus(char i_PlayerSign, ref bool io_IsPlayerWon, ref bool io_IsTie, ref bool io_IsPlayerWantsToExit, UIDuringTheGame ui)
-        {
-            CheckForWinningAndAskForNewGame(ui);
-            CheckForTieAndAskForNewGame(ui);
-            CheckForExitAndAskForNewGame(ui);
-        }
+        
 
         public void CheckForWinningAndAskForNewGame(UIDuringTheGame i_UI)
         {
