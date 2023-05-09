@@ -25,88 +25,22 @@ namespace Ex02_01
             }
         }
 
-        public void Move(UIDuringTheGame ui, ref Board io_Board, ref bool m_IsPlayerWon, ref bool io_IsPlayerWantsToExit)
+        public void Move(UIDuringTheGame ui, ref Board io_Board, ref bool io_IsPlayerWantsToExit)
         {
             int row = -1, column = -1;
-
-            ui.GetRowAnColumnFromUserAndCheckQ(row, column, io_IsPlayerWantsToExit);
-
-            while(!io_IsPlayerWantsToExit && !io_Board.CheckIfRowAndColumnFromUserIsValid())
-            {
-                ui.GetRowAnColumnFromUserAndCheckQ(row, column, io_IsPlayerWantsToExit);
-            }
-
+            GetRowAnColumnFromUserAndCheckQ(ui, ref row, ref column, ref io_IsPlayerWantsToExit);
             io_Board.AddPlayerSign(row, column, m_Sign);
-            CheckIfPlayerWinAndAddScore(row, column);
-
-            if (io_Board.CheckIfPlayerWin(row, column, m_Sign))
-            {
-                m_IsPlayerWon = true;
-                m_Score++;
-            }
-
         }
 
-        public void CheckIfPlayerWinAndAddScore(int i_Row, int i_Column)
+        public void GetRowAnColumnFromUserAndCheckQ(UIDuringTheGame ui, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToExit)
         {
+            ui.GetRowAnColumnFromUserAndCheckQ(ref io_Row, ref io_Column, ref io_IsPlayerWantsToExit);
 
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public void GetRowAndColumnFromUser(int i_BoardSize, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToExit)
-        {
-            Console.WriteLine("Please enter your next move: ");
-            io_Row = GetNumberThatFitBoardSize(i_BoardSize, ref io_IsPlayerWantsToExit);
-            if (!io_IsPlayerWantsToExit)
+            while (!io_IsPlayerWantsToExit && !io_Board.CheckIfRowAndColumnFromUserIsValid(io_Row, io_Column))
             {
-                io_Column = GetNumberThatFitBoardSize(i_BoardSize, ref io_IsPlayerWantsToExit);
+                ui.GetRowAnColumnFromUserAndCheckQ(ref io_Row, ref io_Column, ref io_IsPlayerWantsToExit);
             }
         }
-
-        public int GetNumberThatFitBoardSize(int i_BoardSize, ref bool io_IsPlayerWantsToExit)
-        {
-            int numberFromUser = -1;
-            bool isValid = false;
-
-            while (!isValid)
-            {
-                string input = Console.ReadLine();
-                if (input.Equals('Q'))
-                {
-                    io_IsPlayerWantsToExit = true;
-                    isValid = true;
-                }
-
-                else if (int.TryParse(input, out numberFromUser))
-                {
-                    if (numberFromUser > 0 && numberFromUser <= i_BoardSize)
-                    {
-                        isValid = true;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid input.");
-                    }
-                }
-            }
-            return numberFromUser;
-        }
-
     }
 }
 

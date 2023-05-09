@@ -10,7 +10,7 @@ namespace Ex02_01
         private Board m_Board;
         private Player m_FirstPlayer;
         private Player m_SecondPlayer;
-        private bool m_IsPlayerWon;
+        private bool m_IsPlayerLosed;
         private bool m_IsTie;
         private bool m_IsPlayerWantsToExit;
         private bool m_IsFirstPlayerMove;
@@ -20,7 +20,7 @@ namespace Ex02_01
             m_Board = gameBoard;
             m_FirstPlayer = new Player('X', 0);
             m_SecondPlayer = new Player('O', 0);
-            m_IsPlayerWon = false;
+            m_IsPlayerLosed = false;
             m_IsTie = false;
             m_IsPlayerWantsToExit = false;
             m_IsFirstPlayerMove = true;
@@ -30,20 +30,20 @@ namespace Ex02_01
         {
             UIDuringTheGame ui = new UIDuringTheGame();
 
-            while (!m_IsPlayerWon && !m_IsPlayerWantsToExit && !m_IsTie)
+            while (!m_IsPlayerLosed && !m_IsPlayerWantsToExit && !m_IsTie)
             {
                 ui.PrintBoard(m_Board);
 
                 if (m_IsFirstPlayerMove)
                 {
-                    m_FirstPlayer.Move(ui, ref m_Board, ref m_IsPlayerWon, ref m_IsPlayerWantsToExit);
+                    m_FirstPlayer.Move(ui, ref m_Board, ref m_IsPlayerWantsToExit);
                 }
                 else
                 {
-                    m_SecondPlayer.Move(ui, ref m_Board, ref m_IsPlayerWon, ref m_IsPlayerWantsToExit);
+                    m_SecondPlayer.Move(ui, ref m_Board, ref m_IsPlayerWantsToExit);
                 }
 
-                m_Board.CheckGameStatus(GetPlayersSign(), ref m_IsPlayerWon, ref m_IsTie, ref m_IsPlayerWantsToExit, ui);
+                CheckGameStatus(GetPlayersSign(), ref m_IsPlayerLosed, ref m_IsTie, ref m_IsPlayerWantsToExit, ui);
                 m_IsFirstPlayerMove = !m_IsFirstPlayerMove;
             }
         }
@@ -63,5 +63,16 @@ namespace Ex02_01
             return resSign;
         }
 
+        public void CheckGameStatus(char i_PlayerSign, ref bool io_IsPlayerLosed, ref bool io_IsTie, ref bool io_IsPlayerWantsToExit, UIDuringTheGame ui)
+        {
+           if(m_Board.CheckForLosing(ui, GetPlayersSign(), ref io_IsPlayerLosed) || m_Board.CheckForTieAnd(ui) || m_IsPlayerWantsToExit)
+            {
+                if (ui.IsUserWantNewGame())
+                {
+                    m_IsPlayerLosed = m_IsTie = m_IsPlayerWantsToExit = false;
+                    m_Board.ClearBoard();
+                }
+            }
+        }
     }
 }
