@@ -11,11 +11,13 @@ namespace Ex02_01
 
         private int m_Size;
         private char[,] m_Board;
+        private int m_CounterOfFullCells;
 
         public Board()
         {
             m_Size = 0;
             m_Board = null;
+            m_CounterOfFullCells = 0;
         }
 
         public int Size
@@ -159,46 +161,55 @@ namespace Ex02_01
 
         
 
-        public void CheckForWinningAndAskForNewGame(UIDuringTheGame i_UI)
+        public void CheckForWinningAndAskForNewGame(UIDuringTheGame i_UI, char i_PlayerSign, ref bool io_IsPlayerWon)
         {
-            if (m_IsPlayerWon)
+            if (io_IsPlayerWon)
             {
-                i_UI.PrintWinnig(GetPlayersSign());
+                i_UI.PrintWinnig(i_PlayerSign);
 
                 if (i_UI.AskUserForNewGame())
                 {
-                    m_IsPlayerWon = false;
-                    m_Board.ClearBoard();
+                    io_IsPlayerWon = false;
+                    ClearBoard();
                 }
             }
         }
 
-        public void CheckForTieAndAskForNewGame(UIDuringTheGame i_UI)
+        public void CheckForTieAndAskForNewGame(UIDuringTheGame i_UI, char i_PlayerSign, ref bool io_IsTie)
         {
-            if (m_Board.ThereIsTie())
+            if (IsGameEndWithTie(i_PlayerSign))
             {
                 i_UI.PrintTie();
 
                 if (i_UI.AskUserForNewGame())
                 {
-                    m_IsTie = false;
-                    m_Board.ClearBoard();
+                    io_IsTie = false;
+                    ClearBoard();
                 }
                 else
                 {
-                    m_IsTie = true;
+                    io_IsTie = true;
                 }
             }
         }
 
-        public void CheckForExitAndAskForNewGame(UIDuringTheGame i_UI)
+        public void CheckForExitAndAskForNewGame(UIDuringTheGame i_UI, ref bool io_IsPlayerWantsToExit)
         {
-            if (m_IsPlayerWantsToExit && i_UI.AskUserForNewGame())
+            if (io_IsPlayerWantsToExit && i_UI.AskUserForNewGame())
             {
-                m_IsPlayerWantsToExit = false;
-                m_Board.ClearBoard();
+                io_IsPlayerWantsToExit = false;
+                ClearBoard();
             }
-
         }
+
+        private bool IsGameEndWithTie(char i_PlayerSign)
+        {
+            
+
+
+            return;
+        }
+
+        private is
     }
 }
