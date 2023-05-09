@@ -10,11 +10,27 @@ namespace Ex02_01
         public void PrintBoard(Board board)
         {
             for (int i = 0; i < board.BoardSize; i++)
+            { 
+                Console.Write($"  {i + 1} ");
+            }
+            Console.WriteLine();
+            for (int i = 0; i < board.BoardSize; i++)
             {
                 for (int j = 0; j < board.BoardSize; j++)
                 {
-                    Console.WriteLine(board.getCellValueInBoard(i, j));
+                    if (j == 0)
+                    {
+                        Console.Write($"{i + 1}|");
+                    }
+                    Console.Write($" {board.GetCellValueInBoard(i, j)} |");
                 }
+                Console.WriteLine();
+                Console.Write(" ");
+                for (int j = 0; j < board.BoardSize; j++)
+                {
+                    Console.Write("====");
+                }
+                Console.WriteLine("=");
             }
         }
         public void GetRowAndColumnFromUserAndCheckQuiting(Board i_Board, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToExit)
@@ -31,10 +47,10 @@ namespace Ex02_01
         public void GetValidRowAndColumnFromUserAndCheckQuiting(ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToExit)
         {
             Console.WriteLine("Please enter your next move: ");
-            io_Row = GetNumberFromUser(ref io_IsPlayerWantsToExit);
+            io_Row = GetNumberFromUser(ref io_IsPlayerWantsToExit) - 1;
             if (!io_IsPlayerWantsToExit)
             {
-                io_Column = GetNumberFromUser(ref io_IsPlayerWantsToExit);
+                io_Column = GetNumberFromUser(ref io_IsPlayerWantsToExit) - 1;
             }
         }
 
