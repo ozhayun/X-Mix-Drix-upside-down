@@ -12,11 +12,10 @@ namespace Ex02_01
         private int m_Size;
         private char[,] m_Board;
 
-        public Board(int i_boardSize)
+        public Board()
         {
-            m_Size = i_boardSize;
-            m_Board = new char[m_Size, m_Size];
-            ClearBoard();
+            m_Size = 0;
+            m_Board = null;
         }
 
         public int Size
@@ -31,7 +30,24 @@ namespace Ex02_01
             }
         }
 
-        public char getCellValueInBoard(int i_Row, int i_Column)
+        public char[,] BoardMatrix
+        {
+            set
+            {
+                m_Board = value;
+            }
+        }
+        public bool IsValidBoardSize(int i_BoardSizeToCheck)
+        {
+            bool isValidBoardSize = false;
+            if (i_BoardSizeToCheck >= 3 && i_BoardSizeToCheck <= 9)
+            {
+                isValidBoardSize = true;
+            }
+
+            return isValidBoardSize;
+        }
+    public char getCellValueInBoard(int i_Row, int i_Column)
         {
             return m_Board[i_Row, i_Column];
         }

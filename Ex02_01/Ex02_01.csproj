@@ -37,7 +37,6 @@
     <Compile Include="GamePrints.cs" />
     <Compile Include="GameWithOnePlayer.cs" />
     <Compile Include="GameWithTwoPlayers.cs" />
-    <Compile Include="Menu.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ComputerPlayer.cs" />

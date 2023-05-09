@@ -28,11 +28,11 @@ namespace Ex02_01
 
         public void Run()
         {
-            GamePrints gamePrints = new GamePrints();
+            UIDuringTheGame ui = new UIDuringTheGame();
 
             while (!m_IsPlayerWon && !m_IsPlayerWantsToExit && !m_IsTie)
             {
-                gamePrints.PrintBoard(m_Board);
+                ui.PrintBoard(m_Board);
 
                 if (m_IsFirstPlayerMove)
                 {
@@ -43,14 +43,14 @@ namespace Ex02_01
                     m_SecondPlayer.Move(ref m_Board, ref m_IsPlayerWon, ref m_IsPlayerWantsToExit);
                 }
 
-                CheckForWinningAndAskForNewGame(gamePrints);
-                CheckForTieAndAskForNewGame(gamePrints);
-                CheckForExitAndAskForNewGame(gamePrints);
+                CheckForWinningAndAskForNewGame(ui);
+                CheckForTieAndAskForNewGame(ui);
+                CheckForExitAndAskForNewGame(ui);
                 m_IsFirstPlayerMove = !m_IsFirstPlayerMove;
             }
         }
 
-        public void GetPlayersSign()
+        public char GetPlayersSign()
         {
             char resSign;
             if (m_IsFirstPlayerMove)
