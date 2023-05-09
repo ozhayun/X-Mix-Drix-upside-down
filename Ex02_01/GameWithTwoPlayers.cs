@@ -36,16 +36,14 @@ namespace Ex02_01
 
                 if (m_IsFirstPlayerMove)
                 {
-                    m_FirstPlayer.Move(ref m_Board, ref m_IsPlayerWon, ref m_IsPlayerWantsToExit);
+                    m_FirstPlayer.Move(ui, ref m_Board, ref m_IsPlayerWon, ref m_IsPlayerWantsToExit);
                 }
                 else
                 {
-                    m_SecondPlayer.Move(ref m_Board, ref m_IsPlayerWon, ref m_IsPlayerWantsToExit);
+                    m_SecondPlayer.Move(ui, ref m_Board, ref m_IsPlayerWon, ref m_IsPlayerWantsToExit);
                 }
 
-                CheckForWinningAndAskForNewGame(ui);
-                CheckForTieAndAskForNewGame(ui);
-                CheckForExitAndAskForNewGame(ui);
+                m_Board.CheckGameStatus(GetPlayersSign(), ref m_IsPlayerWon, ref m_IsTie, ref m_IsPlayerWantsToExit, ui);
                 m_IsFirstPlayerMove = !m_IsFirstPlayerMove;
             }
         }
@@ -65,46 +63,5 @@ namespace Ex02_01
             return resSign;
         }
 
-        public void CheckForWinningAndAskForNewGame(GamePrints gamePrints)
-        {
-            if (m_IsPlayerWon)
-            {
-                gamePrints.PrintWinnig(GetPlayersSign());
-
-                if (gamePrints.AskUserForNewGame())
-                {
-                    m_IsPlayerWon = false;
-                    m_Board.ClearBoard();
-                }
-            }
-        }
-
-        public void CheckForTieAndAskForNewGame(GamePrints gamePrints)
-        {
-            if (m_Board.ThereIsTie())
-            {
-                gamePrints.PrintTie();
-
-                if (gamePrints.AskUserForNewGame())
-                {
-                    m_IsTie = false;
-                    m_Board.ClearBoard();
-                }
-                else
-                {
-                    m_IsTie = true;
-                }
-            }
-        }
-
-        public void CheckForExitAndAskForNewGame(GamePrints gamePrints)
-        {
-            if (m_IsPlayerWantsToExit && gamePrints.AskUserForNewGame())
-            {
-                m_IsPlayerWantsToExit = false;
-                m_Board.ClearBoard();
-            }
-
-        }
     }
 }

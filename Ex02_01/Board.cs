@@ -156,5 +156,54 @@ namespace Ex02_01
         {
 
         }
+
+        public void CheckGameStatus(char i_PlayerSign, ref bool io_IsPlayerWon, ref bool io_IsTie, ref bool io_IsPlayerWantsToExit, UIDuringTheGame ui)
+        {
+            CheckForWinningAndAskForNewGame(ui);
+            CheckForTieAndAskForNewGame(ui);
+            CheckForExitAndAskForNewGame(ui);
+        }
+
+        public void CheckForWinningAndAskForNewGame(UIDuringTheGame i_UI)
+        {
+            if (m_IsPlayerWon)
+            {
+                i_UI.PrintWinnig(GetPlayersSign());
+
+                if (i_UI.AskUserForNewGame())
+                {
+                    m_IsPlayerWon = false;
+                    m_Board.ClearBoard();
+                }
+            }
+        }
+
+        public void CheckForTieAndAskForNewGame(UIDuringTheGame i_UI)
+        {
+            if (m_Board.ThereIsTie())
+            {
+                i_UI.PrintTie();
+
+                if (i_UI.AskUserForNewGame())
+                {
+                    m_IsTie = false;
+                    m_Board.ClearBoard();
+                }
+                else
+                {
+                    m_IsTie = true;
+                }
+            }
+        }
+
+        public void CheckForExitAndAskForNewGame(UIDuringTheGame i_UI)
+        {
+            if (m_IsPlayerWantsToExit && i_UI.AskUserForNewGame())
+            {
+                m_IsPlayerWantsToExit = false;
+                m_Board.ClearBoard();
+            }
+
+        }
     }
 }
