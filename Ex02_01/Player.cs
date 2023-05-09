@@ -25,26 +25,48 @@ namespace Ex02_01
             }
         }
 
-        public void Move(ref Board io_Board, ref bool m_IsPlayerWon, ref bool io_IsPlayerWantsToExit)
+        public void Move(UIDuringTheGame ui, ref Board io_Board, ref bool m_IsPlayerWon, ref bool io_IsPlayerWantsToExit)
         {
             int row = -1, column = -1;
 
-            GetRowAndColumnFromUser(io_Board.Size, ref row, ref column, ref io_IsPlayerWantsToExit);
+            ui.GetRowAnColumnFromUserAndCheckQ(row, column, io_IsPlayerWantsToExit);
 
-            while(!io_IsPlayerWantsToExit && !io_Board.isThisCellClear(row, column))
+            while(!io_IsPlayerWantsToExit && !io_Board.CheckIfRowAndColumnFromUserIsValid())
             {
-                GetRowAndColumnFromUser(io_Board.Size, ref row, ref column, ref io_IsPlayerWantsToExit);
+                ui.GetRowAnColumnFromUserAndCheckQ(row, column, io_IsPlayerWantsToExit);
             }
 
             io_Board.AddPlayerSign(row, column, m_Sign);
+            CheckIfPlayerWinAndAddScore(row, column);
 
-            if(io_Board.CheckIfWin(row, column, m_Sign))
+            if (io_Board.CheckIfPlayerWin(row, column, m_Sign))
             {
                 m_IsPlayerWon = true;
                 m_Score++;
             }
 
         }
+
+        public void CheckIfPlayerWinAndAddScore(int i_Row, int i_Column)
+        {
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public void GetRowAndColumnFromUser(int i_BoardSize, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToExit)
         {
