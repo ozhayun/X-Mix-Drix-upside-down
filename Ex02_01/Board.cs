@@ -58,7 +58,7 @@ namespace Ex02_01
 
         public bool IsThisCellClear(int i_Row, int i_Column)
         {
-            return getCellValueInBoard(i_Row, i_Column) == k_BlankChar;
+            return GetCellValueInBoard(i_Row, i_Column) == k_BlankChar;
         }
 
         public bool IsGameFinishedWithLost(UIDuringTheGame i_UI, char i_PlayersSign, int i_Row, int i_Column)
@@ -132,7 +132,7 @@ namespace Ex02_01
             bool winning = true;
             for (int i = 0; i < BoardSize; i++)
             {
-                if (m_Board[i, (BoardSize + 1 - i)] != i_PlayersSign)
+                if (m_Board[i, (BoardSize - 1 - i)] != i_PlayersSign)
                 {
                     winning = false;
                 }
@@ -145,7 +145,7 @@ namespace Ex02_01
             return m_CounterOfFullCells == BoardSize * BoardSize;
         }
 
-        public char getCellValueInBoard(int i_Row, int i_Column)
+        public char GetCellValueInBoard(int i_Row, int i_Column)
         {
             return m_Board[i_Row, i_Column];
         }
