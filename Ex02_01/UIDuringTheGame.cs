@@ -76,17 +76,33 @@ namespace Ex02_01
             return numberFromUser;
         }
 
+        public void PrintLosingMessage(char i_LossingPlayerSign)
+        {
+            Console.WriteLine($"Player {i_LossingPlayerSign} lost!!!");
+        }
+
         public bool IsUserWantNewGame()
         {
             bool userWantsNewGame = false;
             Console.WriteLine("Please enter y for new game");
             String inputFromUser = Console.ReadLine();
-            if (inputFromUser.Equals('y'))
+            if (inputFromUser == "Y")
             {
                 userWantsNewGame = true;
             }
 
             return userWantsNewGame;
         }
+
+        public void PrintStartNewGameMessage()
+        {
+            Console.WriteLine("Starting a new game");
+        }
+
+        public void PrintTieMessage()
+        {
+            Console.WriteLine("There is a TIE!!!");
+        }
+
     }
 }
