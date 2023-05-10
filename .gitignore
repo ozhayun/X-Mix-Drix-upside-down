@@ -5,6 +5,8 @@
 *.
 *.pdb
 *.cache
+bin/
+obj/
 
 # User-specific files
 *.suo
