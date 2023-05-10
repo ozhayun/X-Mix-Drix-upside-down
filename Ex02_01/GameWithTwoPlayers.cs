@@ -44,6 +44,7 @@ namespace Ex02_01
             }
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         public char GetPlayersSign()
         {
@@ -95,5 +96,7 @@ namespace Ex02_01
         }
 =======
 >>>>>>> 7e0a4fbe6d94d1e6483a8daa843bffdf694350ee
+=======
+>>>>>>> 12fa93c2eee7282084874361ba7a67a4b1db1370
     }
 }
