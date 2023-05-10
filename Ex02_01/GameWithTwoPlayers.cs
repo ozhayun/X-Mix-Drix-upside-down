@@ -81,7 +81,8 @@ namespace Ex02_01
             bool lost = false;
             if (m_Board.IsGameFinishedWithLost(ui, GetPlayersSign(), i_Row, i_Column))
             {
-                m_IsPlayerLosed = true;
+                ui.PrintLosing();
+;               m_IsPlayerLosed = true;
                 lost = true;
             }
             return lost;
