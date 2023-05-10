@@ -20,8 +20,8 @@ namespace Ex02_01
 
             if (typeOfGame == (int)eGameType.OnePlayer)
             {
-                //GameWithOnePlayer onePlayer = new GameWithOnePlayer(board);
-                //onePlayer.Run();
+                GameWithOnePlayer onePlayer = new GameWithOnePlayer(board);
+                onePlayer.Run();
             }
             else if (typeOfGame == (int)eGameType.TwoPlayers)
             {

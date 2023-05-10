@@ -1,47 +1,44 @@
 ﻿
 namespace Ex02_01
 {
-    class GameWithOnePlayer
+    class GameWithOnePlayer : Game
     {
-        Board m_Board;
         Player m_UserPlayer;
         ComputerPlayer m_ComputerPlayer;
-        private bool m_IsGameFinished;
-        private bool m_IsUserTurn;
+        private bool m_IsComputerPlayerTurn;
 
-        public GameWithOnePlayer(Board gameBoard)
+        public GameWithOnePlayer(Board gameBoard) : base(gameBoard, false, false, false)
         {
-            m_Board = gameBoard;
             m_UserPlayer = new Player('X', 0);
             m_ComputerPlayer = new ComputerPlayer();
-            m_IsGameFinished = false;
-            m_IsUserTurn = true;
+            m_IsComputerPlayerTurn = false;
         }
 
         public void Run()
         {
-            //GamePrints gamePrints = new GamePrints();
+            UIDuringTheGame ui = new UIDuringTheGame();
+            int row = -1, column = -1;
+            char currentPlayerSign;
 
-            //while (!m_IsGameFinished)
-            //{
-            //    gamePrints.PrintBoard(m_Board);
+            while (!m_IsPlayerLosed && !m_IsPlayerWantsToExit && !m_IsTie)
+            {
+                ui.PrintBoard(m_Board);
 
-            //    if (m_IsUserTurn)
-            //    {
-            //        m_UserPlayer.Move(ref m_Board, ref m_IsGameFinished);
-            //    }
-            //    else
-            //    {
-            //        m_ComputerPlayer.StupidMove(ref m_Board, ref m_IsGameFinished);
-            //    }
+                if (m_IsComputerPlayerTurn)
+                {
+                    m_ComputerPlayer.StupidMove(ref m_Board, ref row, ref column);
+                    currentPlayerSign = m_ComputerPlayer.Sign;
+                }
+                else
+                {
+                    m_UserPlayer.Move(ui, ref m_Board, ref m_IsPlayerWantsToExit, ref row, ref column);
+                    currentPlayerSign = m_UserPlayer.Sign;
+                }
 
-            //    m_Board.checkIfWin();
-            //    m_Board.checkIfTie();
-            //    m_IsUserTurn = !m_IsUserTurn;
+                CheckGameStatus(ui, row, column, currentPlayerSign);
+                m_IsComputerPlayerTurn = !m_IsComputerPlayerTurn;
+            }
         }
     }
-
-
-
 }
 
