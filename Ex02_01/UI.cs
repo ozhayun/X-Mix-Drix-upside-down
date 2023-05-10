@@ -43,7 +43,7 @@ namespace Ex02_01
         {
             int boardSize = 0;
             bool isValid = false;
-            Console.WriteLine("Please enter a number between 3 and 9 for board size (or 'Q' for exit): ");
+            Console.WriteLine("Please enter a number between 3 and 9 for board size: ");
             while (!isValid)
             {
                 string input = Console.ReadLine();
@@ -51,7 +51,7 @@ namespace Ex02_01
                 {
                     if (io_Board.IsValidBoardSize(boardSize))
                     {
-                        io_Board.BoardMatrix = new char[boardSize, boardSize];
+                        io_Board.BoardMatrix = new Cell[boardSize, boardSize];
                         isValid = true;
                     }
                     else
