@@ -99,7 +99,7 @@ namespace Ex02_01
 
         public bool IsThereDiagonal(char i_PlayersSign, int i_Row, int i_Column) 
         {
-            bool winning = true;
+            bool winning = false;
 
             if (i_Row == i_Column)
             {
