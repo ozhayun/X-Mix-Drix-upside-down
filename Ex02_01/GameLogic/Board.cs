@@ -26,14 +26,14 @@ namespace Ex02_01
             }
         }
 
-        public bool IsFoundEmptyCellThatNotClosedSequence(int io_Row, int io_Coulmn)
+        public bool IsFoundEmptyCellThatNotClosedSequence(int io_Row, int io_Coulmn, char i_PlayerSign)
         {
             bool foundClearCellThatNotClosedSequence = false;
             for (int i = 0; i < BoardSize && !foundClearCellThatNotClosedSequence; i++)
             {
                 for (int j = 0; j < BoardSize && !foundClearCellThatNotClosedSequence; j++)
                 {
-                    if (IsThisCellClear(i, j) && !IsThisCellCloseSequence(i, j))
+                    if (IsThisCellClear(i, j) && !IsThisCellCloseSequence(i, j, i_PlayerSign))
                     {
                         io_Row = i;
                         io_Coulmn = j;
@@ -44,9 +44,8 @@ namespace Ex02_01
             return foundClearCellThatNotClosedSequence;
         }
 
-        private bool IsThisCellCloseSequence(int i, int j)
+        private bool IsThisCellCloseSequence(int i, int j, char i_PlayerSign)
         {
-
         }
 
         public void SetRowAndColumnToBeTheFirstClearCell(int io_Row, int io_Coulmn)
