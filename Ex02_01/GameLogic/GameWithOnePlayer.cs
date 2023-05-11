@@ -4,9 +4,9 @@ namespace Ex02_01
 {
     public class GameWithOnePlayer : Game
     {
-        Player m_UserPlayer;
-        ComputerPlayer m_ComputerPlayer;
-        private bool m_IsComputerPlayerTurn;
+        private Player          m_UserPlayer;
+        private ComputerPlayer  m_ComputerPlayer;
+        private bool            m_IsComputerPlayerTurn;
 
 
         public GameWithOnePlayer(Board gameBoard) : base(gameBoard, false, false, false)
@@ -23,8 +23,9 @@ namespace Ex02_01
             int row = -1, column = -1;
             char currentPlayerSign;
 
-            while (!m_IsPlayerLosed && !m_IsPlayerWantsToExit && !m_IsTie)
+            while (!m_IsPlayerLosed && !m_IsPlayerWantsToQuit && !m_IsTie)
             {
+                Console.Clear();
                 ui.PrintBoard(m_Board);
 
                 if (m_IsComputerPlayerTurn)
@@ -34,7 +35,7 @@ namespace Ex02_01
                 }
                 else
                 {
-                    m_UserPlayer.Move(ui, ref m_Board, ref m_IsPlayerWantsToExit, ref row, ref column);
+                    m_UserPlayer.Move(ui, ref m_Board, ref m_IsPlayerWantsToQuit, ref row, ref column);
                     currentPlayerSign = m_UserPlayer.Sign;
                 }
 

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Ex02_01
 {
@@ -24,18 +21,19 @@ namespace Ex02_01
             int row = -1, column = -1;
             char currentPlayerSign;
 
-            while (!m_IsPlayerLosed && !m_IsPlayerWantsToExit && !m_IsTie)
+            while (!m_IsPlayerLosed && !m_IsPlayerWantsToQuit && !m_IsTie)
             {
+                Console.Clear();
                 ui.PrintBoard(m_Board);
 
                 if (m_IsFirstPlayerMove)
                 {
-                    m_FirstPlayer.Move(ui, ref m_Board, ref m_IsPlayerWantsToExit, ref row, ref column);
+                    m_FirstPlayer.Move(ui, ref m_Board, ref m_IsPlayerWantsToQuit, ref row, ref column);
                     currentPlayerSign = m_FirstPlayer.Sign;
                 }
                 else
                 {
-                    m_SecondPlayer.Move(ui, ref m_Board, ref m_IsPlayerWantsToExit, ref row, ref column);
+                    m_SecondPlayer.Move(ui, ref m_Board, ref m_IsPlayerWantsToQuit, ref row, ref column);
                     currentPlayerSign = m_SecondPlayer.Sign;
                 }
 

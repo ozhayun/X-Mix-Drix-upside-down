@@ -5,24 +5,24 @@
         protected Board     m_Board;
         protected bool      m_IsPlayerLosed;
         protected bool      m_IsTie;
-        protected bool      m_IsPlayerWantsToExit;
+        protected bool      m_IsPlayerWantsToQuit;
 
-        public Game(Board i_Board, bool i_IsPlayerLosed, bool i_IsTie, bool i_IsPlayerWantsToExit)
+        public Game(Board i_Board, bool i_IsPlayerLosed, bool i_IsTie, bool m_IsPlayerWantsToQuit)
         {
             this.m_Board = i_Board;
             this.m_IsPlayerLosed = i_IsPlayerLosed;
             this.m_IsTie = i_IsTie;
-            this.m_IsPlayerWantsToExit = i_IsPlayerWantsToExit;
+            this.m_IsPlayerWantsToQuit = m_IsPlayerWantsToQuit;
         }
 
         
     public void CheckGameStatus(UIDuringTheGame i_UI, int i_Row, int i_Column, char i_CurrentPlayerSign)
         {
-            if (IsGameFinishedWithLost(i_UI, i_Row, i_Column, i_CurrentPlayerSign) || IsGameFinishedWithTie(i_UI) || m_IsPlayerWantsToExit)
+            if (IsGameFinishedWithLost(i_UI, i_Row, i_Column, i_CurrentPlayerSign) || IsGameFinishedWithTie(i_UI) || m_IsPlayerWantsToQuit)
             {
                 if (i_UI.IsUserWantNewGame())
                 {
-                    m_IsPlayerLosed = m_IsTie = m_IsPlayerWantsToExit = false;
+                    m_IsPlayerLosed = m_IsTie = m_IsPlayerWantsToQuit = false;
                     m_Board.ClearBoard();
                     i_UI.PrintStartNewGameMessage();
                 }
