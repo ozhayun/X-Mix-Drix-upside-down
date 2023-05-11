@@ -54,19 +54,6 @@ namespace Ex02_01
         }
 
 
-        public void GetRowAndColumnFromUserAndCheckQuiting2(Board i_Board, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToQuit)
-        {
-            GetValidRowAndColumnFromUserAndCheckQuiting(ref io_Row, ref io_Column, ref io_IsPlayerWantsToQuit);
-
-            while (!io_IsPlayerWantsToQuit && !i_Board.IsRowAndColumnFromUserIsValid(io_Row, io_Column))
-            {
-                Console.WriteLine("Invalid input");
-                GetValidRowAndColumnFromUserAndCheckQuiting(ref io_Row, ref io_Column, ref io_IsPlayerWantsToQuit);
-            }
-        }
-
-
-
         public void GetRowAndColumnFromUserAndCheckQuiting(Board i_Board, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToQuit)
         {
             Console.WriteLine("Please enter your next move or Q to quit the game");
@@ -78,7 +65,6 @@ namespace Ex02_01
                 GetValidMoveFromUser(i_Board, ref io_Row, ref io_Column, ref io_IsPlayerWantsToQuit);
             }
         }
-
 
 
         private void GetValidMoveFromUser(Board i_Board, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToQuit)
