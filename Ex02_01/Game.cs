@@ -20,41 +20,40 @@ namespace Ex02_01
 
 
         
-
-    public void CheckGameStatus(UIDuringTheGame ui, int i_Row, int i_Column, char i_CurrentPlayerSign)
+    public void CheckGameStatus(UIDuringTheGame i_UI, int i_Row, int i_Column, char i_CurrentPlayerSign)
         {
-            if (IsGameFinishedWithLost(ui, i_Row, i_Column, i_CurrentPlayerSign) || IsGameFinishedWithTie(ui) || m_IsPlayerWantsToExit)
+            if (IsGameFinishedWithLost(i_UI, i_Row, i_Column, i_CurrentPlayerSign) || IsGameFinishedWithTie(i_UI) || m_IsPlayerWantsToExit)
             {
-                if (ui.IsUserWantNewGame())
+                if (i_UI.IsUserWantNewGame())
                 {
                     m_IsPlayerLosed = m_IsTie = m_IsPlayerWantsToExit = false;
                     m_Board.ClearBoard();
-                    ui.PrintStartNewGameMessage();
+                    i_UI.PrintStartNewGameMessage();
                 }
             }
         }
 
-        public bool IsGameFinishedWithLost(UIDuringTheGame ui, int i_Row, int i_Column, char i_CurrentPlayerSign)
+        public bool IsGameFinishedWithLost(UIDuringTheGame i_UI, int i_Row, int i_Column, char i_CurrentPlayerSign)
         {
-            bool lost = false;
-            if (m_Board.IsGameFinishedWithLost(ui, i_CurrentPlayerSign, i_Row, i_Column))
+            bool isLost = false;
+            if (m_Board.IsGameFinishedWithLost(i_UI, i_CurrentPlayerSign, i_Row, i_Column))
             {
-                ui.PrintLosingMessage(i_CurrentPlayerSign);
+                i_UI.PrintLosingMessage(i_CurrentPlayerSign);
                 ; m_IsPlayerLosed = true;
-                lost = true;
+                isLost = true;
             }
-            return lost;
+            return isLost;
         }
-        public bool IsGameFinishedWithTie(UIDuringTheGame ui)
+        public bool IsGameFinishedWithTie(UIDuringTheGame i_UI)
         {
-            bool tie = false;
-            if (m_Board.IsGameFinishedWithTie(ui))
+            bool isTie = false;
+            if (m_Board.IsGameFinishedWithTie(i_UI))
             {
-                ui.PrintTieMessage();
+                i_UI.PrintTieMessage();
                 m_IsTie = true;
-                tie = true;
+                isTie = true;
             }
-            return tie;
+            return isTie;
         }
     }
 }

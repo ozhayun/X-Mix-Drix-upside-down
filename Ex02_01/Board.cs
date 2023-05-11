@@ -7,10 +7,10 @@ namespace Ex02_01
 {
     public class Board
     {
-        const char k_BlankChar = ' ';
+        const char          k_BlankChar = ' ';
 
-        private char[,] m_Board;
-        private int m_CounterOfFullCells;
+        private char[,]     m_Board;
+        private int         m_CounterOfFullCells;
 
         public Board()
         {
@@ -63,15 +63,17 @@ namespace Ex02_01
 
         public bool IsGameFinishedWithLost(UIDuringTheGame i_UI, char i_PlayersSign, int i_Row, int i_Column)
         {
-            bool lose = false;
-            if (IsThereRowSequence(i_PlayersSign, i_Row) || IsThereColumnSequence(i_PlayersSign, i_Column) || IsThereDiagonal(i_PlayersSign, i_Row, i_Column))
+            bool isLose = false;
+            if (IsThereRowSequence(i_PlayersSign, i_Row) ||
+                IsThereColumnSequence(i_PlayersSign, i_Column) ||
+                IsThereDiagonalSequence(i_PlayersSign, i_Row, i_Column))
             {
-                lose = true;
+                isLose = true;
             }
-            return lose;
+            return isLose;
         }
 
-        public bool IsThereRowSequence(char i_PlayersSign, int i_Row) 
+        private bool IsThereRowSequence(char i_PlayersSign, int i_Row) 
         {
             bool winning = true;
             for (int i = 0; i < BoardSize; i++)
@@ -84,7 +86,7 @@ namespace Ex02_01
             return winning;
         }
 
-        public bool IsThereColumnSequence(char i_PlayersSign, int i_Column) 
+        private bool IsThereColumnSequence(char i_PlayersSign, int i_Column) 
         {
             bool winning = true;
             for (int i = 0; i < BoardSize; i++)
@@ -97,7 +99,7 @@ namespace Ex02_01
             return winning;
         }
 
-        public bool IsThereDiagonal(char i_PlayersSign, int i_Row, int i_Column) 
+        private bool IsThereDiagonalSequence(char i_PlayersSign, int i_Row, int i_Column) 
         {
             bool winning = false;
 
