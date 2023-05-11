@@ -39,7 +39,11 @@ namespace Ex02_01
                     currentPlayerSign = m_UserPlayer.Sign;
                 }
 
-                CheckGameStatus(ui, row, column, currentPlayerSign);
+                if (!m_IsPlayerWantsToQuit)
+                {
+                    CheckGameStatus(ui, row, column, currentPlayerSign);
+                }
+
                 m_IsComputerPlayerTurn = !m_IsComputerPlayerTurn;
             }
         }

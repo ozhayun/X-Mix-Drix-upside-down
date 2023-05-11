@@ -37,7 +37,11 @@ namespace Ex02_01
                     currentPlayerSign = m_SecondPlayer.Sign;
                 }
 
-                CheckGameStatus(ui, row, column, currentPlayerSign);
+                if(!m_IsPlayerWantsToQuit)
+                {
+                    CheckGameStatus(ui, row, column, currentPlayerSign);
+                }
+
                 m_IsFirstPlayerMove = !m_IsFirstPlayerMove;
             }
         }
