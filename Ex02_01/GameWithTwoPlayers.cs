@@ -10,7 +10,7 @@ namespace Ex02_01
         private Player m_FirstPlayer;
         private Player m_SecondPlayer;
         private bool m_IsFirstPlayerMove;
-        
+
         public GameWithTwoPlayers(Board gameBoard) : base(gameBoard, false, false, false)
         {
             m_FirstPlayer = new Player('X', 0);
@@ -43,60 +43,5 @@ namespace Ex02_01
                 m_IsFirstPlayerMove = !m_IsFirstPlayerMove;
             }
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-        public char GetPlayersSign()
-        {
-            char resSign;
-            if (m_IsFirstPlayerMove)
-            {
-                resSign = m_FirstPlayer.Sign;
-            }
-            else
-            {
-                resSign = m_SecondPlayer.Sign;
-            }
-
-            return resSign;
-        }
-
-        public void CheckGameStatus(UIDuringTheGame ui, int i_Row, int i_Column)
-        {
-           if(IsGameFinishedWithLost(ui, i_Row, i_Column) || IsGameFinishedWithTie(ui) || m_IsPlayerWantsToExit)
-            {
-                if (ui.IsUserWantNewGame())
-                {
-                    m_IsPlayerLosed = m_IsTie = m_IsPlayerWantsToExit = false;
-                    m_Board.ClearBoard();
-                }
-            }
-        }
-
-        public bool IsGameFinishedWithLost(UIDuringTheGame ui, int i_Row, int i_Column)
-        {
-            bool lost = false;
-            if (m_Board.IsGameFinishedWithLost(ui, GetPlayersSign(), i_Row, i_Column))
-            {
-                //ui.PrintLosing();
-;               m_IsPlayerLosed = true;
-                lost = true;
-            }
-            return lost;
-        }
-        public bool IsGameFinishedWithTie(UIDuringTheGame ui)
-        {
-            bool tie = false;
-            if (m_Board.IsGameFinishedWithTie(ui))
-            {
-                m_IsTie = true;
-                tie = true;
-            }
-            return tie;
-        }
-=======
->>>>>>> 7e0a4fbe6d94d1e6483a8daa843bffdf694350ee
-=======
->>>>>>> 12fa93c2eee7282084874361ba7a67a4b1db1370
     }
 }
