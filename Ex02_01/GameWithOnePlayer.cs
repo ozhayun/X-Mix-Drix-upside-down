@@ -1,11 +1,13 @@
-﻿
+﻿using System;
+
 namespace Ex02_01
 {
-    class GameWithOnePlayer : Game
+    public class GameWithOnePlayer : Game
     {
         Player m_UserPlayer;
         ComputerPlayer m_ComputerPlayer;
         private bool m_IsComputerPlayerTurn;
+
 
         public GameWithOnePlayer(Board gameBoard) : base(gameBoard, false, false, false)
         {
@@ -13,6 +15,7 @@ namespace Ex02_01
             m_ComputerPlayer = new ComputerPlayer();
             m_IsComputerPlayerTurn = false;
         }
+
 
         public void Run()
         {

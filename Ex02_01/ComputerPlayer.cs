@@ -4,8 +4,9 @@ namespace Ex02_01
 {
 	public class ComputerPlayer
 	{
-		private char m_Sign;
-        public char Sign
+		private char    m_Sign;
+
+        public char     Sign
         {
             get
             {

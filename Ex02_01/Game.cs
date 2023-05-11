@@ -1,14 +1,11 @@
-﻿using System;
-
-
-namespace Ex02_01
+﻿namespace Ex02_01
 {
     public class Game
     {
-        protected Board m_Board;
-        protected bool m_IsPlayerLosed;
-        protected bool m_IsTie;
-        protected bool m_IsPlayerWantsToExit;
+        protected Board     m_Board;
+        protected bool      m_IsPlayerLosed;
+        protected bool      m_IsTie;
+        protected bool      m_IsPlayerWantsToExit;
 
         public Game(Board i_Board, bool i_IsPlayerLosed, bool i_IsTie, bool i_IsPlayerWantsToExit)
         {
@@ -17,7 +14,6 @@ namespace Ex02_01
             this.m_IsTie = i_IsTie;
             this.m_IsPlayerWantsToExit = i_IsPlayerWantsToExit;
         }
-
 
         
     public void CheckGameStatus(UIDuringTheGame i_UI, int i_Row, int i_Column, char i_CurrentPlayerSign)
@@ -33,6 +29,7 @@ namespace Ex02_01
             }
         }
 
+
         public bool IsGameFinishedWithLost(UIDuringTheGame i_UI, int i_Row, int i_Column, char i_CurrentPlayerSign)
         {
             bool isLost = false;
@@ -44,6 +41,8 @@ namespace Ex02_01
             }
             return isLost;
         }
+
+
         public bool IsGameFinishedWithTie(UIDuringTheGame i_UI)
         {
             bool isTie = false;

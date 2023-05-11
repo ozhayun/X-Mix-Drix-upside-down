@@ -7,9 +7,9 @@ namespace Ex02_01
 {
     public class GameWithTwoPlayers : Game
     {
-        private Player m_FirstPlayer;
-        private Player m_SecondPlayer;
-        private bool m_IsFirstPlayerMove;
+        private Player      m_FirstPlayer;
+        private Player      m_SecondPlayer;
+        private bool        m_IsFirstPlayerMove;
         
         public GameWithTwoPlayers(Board gameBoard) : base(gameBoard, false, false, false)
         {

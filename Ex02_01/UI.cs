@@ -10,6 +10,7 @@ namespace Ex02_01
            TwoPlayers
         }
 
+
         public void Play()
         {
             Board board = new Board();
@@ -34,16 +35,20 @@ namespace Ex02_01
             }
         }
 
+
         public void PrintStartMenu()
         {
-            Console.WriteLine("Welcome to X & O");
+            Console.WriteLine("Welcome to X Mix Drix Upside Down ame");
         }
+
 
         public void SetBoardFromUser(ref Board io_Board)
         {
-            int boardSize = 0;
-            bool isValid = false;
-            Console.WriteLine("Please enter a number between 3 and 9 for board size (or 'Q' for exit): ");
+            int     boardSize = 0;
+            bool    isValid = false;
+
+            Console.WriteLine("Please enter a number between 3 and 9 for board size");
+
             while (!isValid)
             {
                 string input = Console.ReadLine();
@@ -66,11 +71,14 @@ namespace Ex02_01
             }
         }
 
+
         public int GetTypeOfGameFromUser()
         {
-            int gameType = 0;
-            bool isValid = false;
-            Console.WriteLine("Please enter 0 for playing against comuter or 1 for two players: ");
+            int     gameType = 0;
+            bool    isValid = false;
+
+            Console.WriteLine("Please enter 0 for playing against computer or 1 for two players");
+
             while (!isValid)
             {
                 string input = Console.ReadLine();
@@ -93,8 +101,10 @@ namespace Ex02_01
             return gameType;
         }
 
+
         public void PrintEndMenu()
         {
+
         }
     }
 }
