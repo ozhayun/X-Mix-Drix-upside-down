@@ -38,7 +38,7 @@ namespace Ex02_01
 
         public void PrintStartMenu()
         {
-            Console.WriteLine("Welcome to X Mix Drix Upside Down ame");
+            Console.WriteLine("Welcome to X Mix Drix Upside Down game");
         }
 
 

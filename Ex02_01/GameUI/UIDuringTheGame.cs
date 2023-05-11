@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Ex02_01
 {
@@ -57,31 +54,116 @@ namespace Ex02_01
         }
 
 
-        public void GetRowAndColumnFromUserAndCheckQuiting(Board i_Board, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToExit)
+        public void GetRowAndColumnFromUserAndCheckQuiting(Board i_Board, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToQuit)
         {
-            GetValidRowAndColumnFromUserAndCheckQuiting(ref io_Row, ref io_Column, ref io_IsPlayerWantsToExit);
+            Console.WriteLine("Please enter your next move or Q to quit the game");
 
-            while (!io_IsPlayerWantsToExit && !i_Board.IsRowAndColumnFromUserIsValid(io_Row, io_Column))
+            GetValidMoveFromUser(i_Board, ref io_Row, ref io_Column, ref io_IsPlayerWantsToQuit);
+            while(!io_IsPlayerWantsToQuit && !i_Board.IsThisCellClear(io_Row, io_Column))
             {
-                Console.WriteLine("Invalid input");
-                GetValidRowAndColumnFromUserAndCheckQuiting(ref io_Row, ref io_Column, ref io_IsPlayerWantsToExit);
+                Console.WriteLine($"This cell ({io_Row + 1},{io_Column + 1}) is filled, please enter new move");
+                GetValidMoveFromUser(i_Board, ref io_Row, ref io_Column, ref io_IsPlayerWantsToQuit);
             }
-            
         }
 
 
-        public void GetValidRowAndColumnFromUserAndCheckQuiting(ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToExit)
+        private void GetValidMoveFromUser(Board i_Board, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToQuit)
+        {
+            string      input;
+            string[]    stringNumbers;
+            bool        isValid = false;
+
+            while(!isValid && !io_IsPlayerWantsToQuit)
+            {
+                input = Console.ReadLine();
+                stringNumbers = input.Split(' ');
+
+                if (stringNumbers.Length == 2)
+                {
+                   HandleMoveLengthIsTwo(stringNumbers, ref io_Row,ref io_Column, ref io_IsPlayerWantsToQuit, out isValid);
+                }
+                else if (stringNumbers.Length == 1)
+                {
+                   HandleMoveLengthIsOne(stringNumbers, ref io_Row, ref io_Column, ref io_IsPlayerWantsToQuit, out isValid);
+                }
+
+                if (!io_IsPlayerWantsToQuit)
+                {
+                    CheckIfMoveInRange(i_Board, ref isValid, io_Row, io_Column);
+                }
+            }
+        }
+
+        private void HandleMoveLengthIsTwo(string[] i_StringNumbers, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToQuit, out bool o_IsValid)
+        {
+            o_IsValid = false;
+            if (CastStringToNumberAndCheckQuit(i_StringNumbers[0], out io_Row, ref io_IsPlayerWantsToQuit))
+            {
+                if (!io_IsPlayerWantsToQuit)
+                {
+                    if (CastStringToNumberAndCheckQuit(i_StringNumbers[1], out io_Column, ref io_IsPlayerWantsToQuit))
+                    {
+                        o_IsValid = true;
+                    }
+                }
+            }
+        }
+
+        private void HandleMoveLengthIsOne(string[] i_StringNumbers, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToQuit, out bool o_IsValid)
+        {
+            o_IsValid = false;
+
+            if (CastStringToNumberAndCheckQuit(i_StringNumbers[0], out io_Row, ref io_IsPlayerWantsToQuit))
+            {
+                if (!io_IsPlayerWantsToQuit)
+                {
+                    Console.WriteLine("Please enter column");
+                    io_Column = GetNumberFromUser(ref io_IsPlayerWantsToQuit);
+                    o_IsValid = true;
+                }
+            }
+        }
+
+        private void CheckIfMoveInRange(Board i_Board, ref bool io_IsValid, int i_Row, int i_Column)
+        {
+            if (io_IsValid)
+            {
+                io_IsValid = i_Board.IsRowAndColumnInRange(i_Row, i_Column);
+            }
+            if (!io_IsValid)
+            {
+                Console.WriteLine("You entered invalid input, please try again");
+            }
+        }
+
+        private bool CastStringToNumberAndCheckQuit(string i_StringToCast, out int o_Number, ref bool io_IsPlayerWantsToQuit)
+        {
+            bool isValid;
+
+            if(i_StringToCast.Equals("Q"))
+            {
+                io_IsPlayerWantsToQuit = true;
+            }
+
+            isValid = int.TryParse(i_StringToCast, out o_Number);
+            o_Number -= 1;
+
+            return isValid;
+        }
+
+
+        private void GetValidRowAndColumnFromUserAndCheckQuiting(ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToQuit)
         {
             Console.WriteLine("Please enter your next move: ");
-            io_Row = GetNumberFromUser(ref io_IsPlayerWantsToExit) - 1;
-            if (!io_IsPlayerWantsToExit)
+            io_Row = GetNumberFromUser(ref io_IsPlayerWantsToQuit);
+            if (!io_IsPlayerWantsToQuit)
             {
-                io_Column = GetNumberFromUser(ref io_IsPlayerWantsToExit) - 1;
+                io_Column = GetNumberFromUser(ref io_IsPlayerWantsToQuit);
             }
         }
 
 
-        public int GetNumberFromUser(ref bool io_IsPlayerWantsToExit)
+        private int GetNumberFromUser(ref bool io_IsPlayerWantsToQuit)
         {
             int numberFromUser = -1;
             bool isValid = false;
@@ -91,7 +173,7 @@ namespace Ex02_01
                 string input = Console.ReadLine();
                 if (input.Equals('Q'))
                 {
-                    io_IsPlayerWantsToExit = true;
+                    io_IsPlayerWantsToQuit = true;
                     isValid = true;
                 }
 
@@ -99,11 +181,15 @@ namespace Ex02_01
                 {
                     isValid = true;
                 }
+                else
+                {
+                    Console.WriteLine("You entered invalid input, please try again");
+                }
             }
-            return numberFromUser;
+            return numberFromUser - 1;
         }
 
-
+        
         public void PrintLosingMessage(char i_LossingPlayerSign)
         {
             Console.WriteLine($"Player {i_LossingPlayerSign} lost!!!");
@@ -113,7 +199,7 @@ namespace Ex02_01
         public bool IsUserWantNewGame()
         {
             bool userWantsNewGame = false;
-            Console.WriteLine("Please enter y for new game");
+            Console.WriteLine("Please enter Y to start a new game");
             String inputFromUser = Console.ReadLine();
             if (inputFromUser == "Y")
             {
