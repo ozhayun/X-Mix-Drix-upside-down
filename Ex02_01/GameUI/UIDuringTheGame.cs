@@ -66,6 +66,7 @@ namespace Ex02_01
                 Console.WriteLine("Invalid input");
                 GetValidRowAndColumnFromUserAndCheckQuiting(ref io_Row, ref io_Column, ref io_IsPlayerWantsToExit);
             }
+            
         }
 
 
