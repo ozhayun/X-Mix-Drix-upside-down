@@ -75,71 +75,71 @@ namespace Ex02_01
 
         private bool IsThereRowSequence(char i_PlayersSign, int i_Row) 
         {
-            bool winning = true;
+            bool isWinning = true;
             for (int i = 0; i < BoardSize; i++)
             {
                 if (m_Board[i_Row, i] != i_PlayersSign)
                 {
-                    winning = false;
+                    isWinning = false;
                 }
             }
-            return winning;
+            return isWinning;
         }
 
         private bool IsThereColumnSequence(char i_PlayersSign, int i_Column) 
         {
-            bool winning = true;
+            bool isWinning = true;
             for (int i = 0; i < BoardSize; i++)
             {
                 if (m_Board[i, i_Column] != i_PlayersSign)
                 {
-                    winning = false;
+                    isWinning = false;
                 }
             }
-            return winning;
+            return isWinning;
         }
 
         private bool IsThereDiagonalSequence(char i_PlayersSign, int i_Row, int i_Column) 
         {
-            bool winning = false;
+            bool isWinning = false;
 
             if (i_Row == i_Column)
             {
-                winning = WinInMainDiagonal(i_PlayersSign);
+                isWinning = WinInMainDiagonal(i_PlayersSign);
             }
 
             if (i_Row + i_Column == BoardSize + 1)
             {
-                winning = WinInSecondaryDiagonal(i_PlayersSign);
+                isWinning = IsThereWinInSecondaryDiagonal(i_PlayersSign);
             }
 
-            return winning;
+            return isWinning;
         }
 
         public bool WinInMainDiagonal(char i_PlayersSign) 
         {
-            bool winning = true;
+            bool isWinning = true;
             for (int i = 0; i < BoardSize; i++)
             {
                 if (m_Board[i, i] != i_PlayersSign)
                 {
-                    winning = false;
+                    isWinning = false;
                 }
             }
-            return winning;
+            return isWinning;
         }
 
-        public bool WinInSecondaryDiagonal(char i_PlayersSign) 
+        public bool IsThereWinInSecondaryDiagonal(char i_PlayersSign) 
         {
-            bool winning = true;
+            bool isWinning = true;
             for (int i = 0; i < BoardSize; i++)
             {
                 if (m_Board[i, (BoardSize - 1 - i)] != i_PlayersSign)
                 {
-                    winning = false;
+                    isWinning = false;
                 }
             }
-            return winning;
+            return isWinning;
         }
 
         public bool IsGameFinishedWithTie(UIDuringTheGame ui)
