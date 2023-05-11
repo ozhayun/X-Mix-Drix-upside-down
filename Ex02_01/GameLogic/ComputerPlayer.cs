@@ -23,10 +23,18 @@ namespace Ex02_01
 			m_Sign = 'O';
 		}
 
-        public void StupidMove(ref Board io_Board, ref int i_Row, ref int i_Coulmn)
+        public void AIMove(ref Board io_Board, ref int io_Row, ref int io_Coulmn)
         {
-            GetBlankRandomRowAndCol(io_Board, out i_Row, out i_Coulmn);
-            io_Board.AddPlayerSign(i_Row, i_Coulmn, m_Sign);
+            if(io_Board.IsFoundEmptyCellThatNotClosedSequence(io_Row, io_Coulmn))
+            {
+                io_Board.SetRowAndColumnToBeTheFirstClearCell(io_Row, io_Coulmn);
+            }
+        }
+
+        public void StupidMove(ref Board io_Board, ref int io_Row, ref int io_Column)
+        {
+            GetBlankRandomRowAndCol(io_Board, out io_Row, out io_Column);
+            io_Board.AddPlayerSign(io_Row, io_Column, m_Sign);
         }
 
         private void GetBlankRandomRowAndCol(Board i_Board, out int o_Row, out int o_Column)

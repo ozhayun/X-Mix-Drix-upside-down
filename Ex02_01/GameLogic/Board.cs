@@ -26,6 +26,46 @@ namespace Ex02_01
             }
         }
 
+        public bool IsFoundEmptyCellThatNotClosedSequence(int io_Row, int io_Coulmn)
+        {
+            bool foundClearCellThatNotClosedSequence = false;
+            for (int i = 0; i < BoardSize && !foundClearCellThatNotClosedSequence; i++)
+            {
+                for (int j = 0; j < BoardSize && !foundClearCellThatNotClosedSequence; j++)
+                {
+                    if (IsThisCellClear(i, j) && !IsThisCellCloseSequence(i, j))
+                    {
+                        io_Row = i;
+                        io_Coulmn = j;
+                        foundClearCellThatNotClosedSequence = true;
+                    }
+                }
+            }
+            return foundClearCellThatNotClosedSequence;
+        }
+
+        private bool IsThisCellCloseSequence(int i, int j)
+        {
+
+        }
+
+        public void SetRowAndColumnToBeTheFirstClearCell(int io_Row, int io_Coulmn)
+        {
+            bool foundClearCell = false;
+            for (int i = 0; i < BoardSize && !foundClearCell; i++)
+            {
+                for (int j = 0; j < BoardSize && !foundClearCell; j++)
+                {
+                    if (IsThisCellClear(i, j))
+                    {
+                        io_Row = i;
+                        io_Coulmn = j;
+                        foundClearCell = true;
+                    }
+                }
+            }
+        }
+
         public char[,] BoardMatrix
         {
             set
