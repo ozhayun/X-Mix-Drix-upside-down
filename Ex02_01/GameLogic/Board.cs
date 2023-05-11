@@ -47,10 +47,11 @@ namespace Ex02_01
         private bool IsThisCellCloseSequence(int i_Row, int i_Column, char i_UserSign)
         {
             bool isThisCellCloseSequence = false;
-            m_Board[i_Row, i_Column] = i_UserSign;
+            AddPlayerSign(i_Row, i_Column, i_UserSign);
+
             if (IsGameFinishedWithLost(i_UserSign, i_Row, i_Column))
             {
-                m_Board[i_Row, i_Column] = k_BlankChar;
+                RemovePlayerSign(i_Row, i_Column);
                 isThisCellCloseSequence = true;
             }
             return isThisCellCloseSequence;
@@ -155,7 +156,7 @@ namespace Ex02_01
                 isWinning = WinInMainDiagonal(i_PlayersSign);
             }
 
-            if (i_Row + i_Column == BoardSize + 1)
+            if (!isWinning && i_Row + i_Column == BoardSize + 1)
             {
                 isWinning = IsThereWinInSecondaryDiagonal(i_PlayersSign);
             }
@@ -203,6 +204,11 @@ namespace Ex02_01
         {
             m_Board[i_Row, i_Column] = i_UserSign;
             m_CounterOfFullCells++;
+        }
+        private void RemovePlayerSign(int i_Row, int i_Column)
+        {
+            m_Board[i_Row, i_Column] = k_BlankChar;
+            m_CounterOfFullCells--;
         }
 
         public void ClearBoard()
