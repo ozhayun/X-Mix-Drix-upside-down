@@ -4,11 +4,7 @@ namespace Ex02_01
 {
     public class UI
     {
-        private enum eGameType
-        {
-           OnePlayer,
-           TwoPlayers
-        }
+
 
         public void Play()
         {
@@ -16,18 +12,8 @@ namespace Ex02_01
 
             PrintStartMenu();
             SetBoardFromUser(ref board);
-            int typeOfGame = GetTypeOfGameFromUser();
-
-            if (typeOfGame == (int)eGameType.OnePlayer)
-            {
-                GameWithOnePlayer onePlayer = new GameWithOnePlayer(board);
-                onePlayer.Run();
-            }
-            else if (typeOfGame == (int)eGameType.TwoPlayers)
-            {
-                GameWithTwoPlayers twoPlayers = new GameWithTwoPlayers(board);
-                twoPlayers.Run();
-            }
+            Game game = new Game(GetTypeOfGameFromUser(), ref board);
+            game.Run();
             PrintEndMenu();
         }
 

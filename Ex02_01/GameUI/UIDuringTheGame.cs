@@ -223,10 +223,10 @@ namespace Ex02_01
             Console.WriteLine("There is a TIE!!!");
         }
 
-        public void PrintScores(char i_CurrentPlayerSign, int i_CurrentPlayerScore, char i_OtherPlayerSign, int i_OtherPlayerScore)
+        public void PrintScores(Player i_FirstPlayer, Player i_SecondPlayer)
         {
-            Console.WriteLine($"Player: {i_OtherPlayerSign}, Score: {i_CurrentPlayerScore}");
-            Console.WriteLine($"Player: {i_OtherPlayerSign}, Score: {i_OtherPlayerScore}");
+            Console.WriteLine($"Player: {i_FirstPlayer.Sign}, Score: {i_FirstPlayer.Score}");
+            Console.WriteLine($"Player: {i_SecondPlayer.Sign}, Score: {i_SecondPlayer.Score}");
         }
     }
 }
