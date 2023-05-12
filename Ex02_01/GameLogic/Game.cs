@@ -33,10 +33,10 @@
         public bool IsGameFinishedWithLost(UIDuringTheGame i_UI, int i_Row, int i_Column, char i_CurrentPlayerSign)
         {
             bool isLost = false;
-            if (m_Board.IsGameFinishedWithLost(i_UI, i_CurrentPlayerSign, i_Row, i_Column))
+            if (m_Board.IsGameFinishedWithLost(i_CurrentPlayerSign, i_Row, i_Column))
             {
                 i_UI.PrintLosingMessage(i_CurrentPlayerSign);
-                ; m_IsPlayerLosed = true;
+                m_IsPlayerLosed = true;
                 isLost = true;
             }
             return isLost;

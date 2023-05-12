@@ -34,6 +34,56 @@ namespace Ex02_01
                 ClearBoard();
             }
         }
+
+        public bool IsFoundEmptyCellThatNotClosedSequence(int io_Row, int io_Coulmn, char i_PlayerSign)
+        {
+            bool foundClearCellThatNotClosedSequence = false;
+            for (int i = 0; i < BoardSize && !foundClearCellThatNotClosedSequence; i++)
+            {
+                for (int j = 0; j < BoardSize && !foundClearCellThatNotClosedSequence; j++)
+                {
+                    if (IsThisCellClear(i, j) && !IsThisCellCloseSequence(i, j, i_PlayerSign))
+                    {
+                        io_Row = i;
+                        io_Coulmn = j;
+                        foundClearCellThatNotClosedSequence = true;
+                    }
+                }
+            }
+            return foundClearCellThatNotClosedSequence;
+        }
+
+        private bool IsThisCellCloseSequence(int i_Row, int i_Column, char i_UserSign)
+        {
+            bool isThisCellCloseSequence = false;
+            AddPlayerSign(i_Row, i_Column, i_UserSign);
+
+            if (IsGameFinishedWithLost(i_UserSign, i_Row, i_Column))
+            {
+                RemovePlayerSign(i_Row, i_Column);
+                isThisCellCloseSequence = true;
+            }
+            return isThisCellCloseSequence;
+        }
+
+        public void SetRowAndColumnToBeTheFirstClearCell(int io_Row, int io_Coulmn)
+        {
+            bool foundClearCell = false;
+            for (int i = 0; i < BoardSize && !foundClearCell; i++)
+            {
+                for (int j = 0; j < BoardSize && !foundClearCell; j++)
+                {
+                    if (IsThisCellClear(i, j))
+                    {
+                        io_Row = i;
+                        io_Coulmn = j;
+                        foundClearCell = true;
+                    }
+                }
+            }
+        }
+
+
         public bool IsValidBoardSize(int i_BoardSizeToCheck)
         {
             bool isValidBoardSize = false;
@@ -61,7 +111,7 @@ namespace Ex02_01
             return GetCellValueInBoard(i_Row, i_Column) == k_BlankChar;
         }
 
-        public bool IsGameFinishedWithLost(UIDuringTheGame i_UI, char i_PlayersSign, int i_Row, int i_Column)
+        public bool IsGameFinishedWithLost(char i_PlayersSign, int i_Row, int i_Column)
         {
             bool isLose = false;
             if (IsThereRowSequence(i_PlayersSign, i_Row) ||
@@ -108,7 +158,7 @@ namespace Ex02_01
                 isWinning = WinInMainDiagonal(i_PlayersSign);
             }
 
-            if (i_Row + i_Column == BoardSize + 1)
+            if (!isWinning && i_Row + i_Column == BoardSize + 1)
             {
                 isWinning = IsThereWinInSecondaryDiagonal(i_PlayersSign);
             }
@@ -157,6 +207,11 @@ namespace Ex02_01
             m_Board[i_Row, i_Column] = i_UserSign;
             m_CounterOfFullCells++;
         }
+        private void RemovePlayerSign(int i_Row, int i_Column)
+        {
+            m_Board[i_Row, i_Column] = k_BlankChar;
+            m_CounterOfFullCells--;
+        }
 
         public void ClearBoard()
         {
@@ -167,6 +222,7 @@ namespace Ex02_01
                     m_Board[i, j] = k_BlankChar;
                 }
             }
+            m_CounterOfFullCells = 0;
         }
     }
 }

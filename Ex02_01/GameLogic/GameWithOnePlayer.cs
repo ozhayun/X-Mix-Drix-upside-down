@@ -23,14 +23,15 @@ namespace Ex02_01
             int row = -1, column = -1;
             char currentPlayerSign;
 
+            Console.Clear();
+            ui.PrintBoard(m_Board);
+
             while (!m_IsPlayerLosed && !m_IsPlayerWantsToQuit && !m_IsTie)
             {
-                Console.Clear();
-                ui.PrintBoard(m_Board);
-
                 if (m_IsComputerPlayerTurn)
                 {
-                    m_ComputerPlayer.StupidMove(ref m_Board, ref row, ref column);
+                    // m_ComputerPlayer.StupidMove(ref m_Board, ref row, ref column);
+                    m_ComputerPlayer.AIMove(ref m_Board, ref row, ref column);
                     currentPlayerSign = m_ComputerPlayer.Sign;
                 }
                 else
@@ -41,6 +42,8 @@ namespace Ex02_01
 
                 if (!m_IsPlayerWantsToQuit)
                 {
+                    Console.Clear();
+                    ui.PrintBoard(m_Board);
                     CheckGameStatus(ui, row, column, currentPlayerSign);
                 }
 
