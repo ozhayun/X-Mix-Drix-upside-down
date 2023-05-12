@@ -4,8 +4,6 @@ namespace Ex02_01
 {
     public class Player
     {
-
-
         private char m_Sign;
         private int m_Score;
 

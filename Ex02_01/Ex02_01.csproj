@@ -38,11 +38,7 @@
     <Compile Include="GameLogic\Game.cs" />
     <Compile Include="GameLogic\Player.cs" />
     <Compile Include="GameLogic\Program.cs" />
-    <Compile Include="GameLogic\BoardValidator.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GameLogic\" />
-    <Folder Include="GameUI\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

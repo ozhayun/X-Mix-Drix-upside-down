@@ -90,12 +90,6 @@
             return isValidBoardSize;
         }
 
-        public bool IsRowAndColumnFromUserIsValid(int i_Row, int i_Column)
-        {
-            return IsRowAndColumnInRange(i_Row,i_Column) && IsThisCellClear(i_Row, i_Column);
-        }
-
-
         public bool IsRowAndColumnInRange(int i_Row, int i_Column)
         {
             return 0 <= i_Row && i_Row < BoardSize && 0 <= i_Column && i_Column < BoardSize;
