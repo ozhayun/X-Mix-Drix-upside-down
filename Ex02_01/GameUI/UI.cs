@@ -96,6 +96,7 @@ namespace Ex02_01
 
         public void PrintEndMenu()
         {
+            Console.Clear();
             Console.WriteLine("Goodbye!");
             Console.ReadLine();
         }

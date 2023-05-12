@@ -8,6 +8,7 @@ namespace Ex02_01
         {
             int boardSize = board.BoardSize;
 
+            Console.Clear();
             PrintColumnsNumber(boardSize);
             
             for (int i = 0; i < boardSize; i++)
@@ -199,6 +200,7 @@ namespace Ex02_01
         public bool IsUserWantNewGame()
         {
             bool userWantsNewGame = false;
+            Console.Clear();
             Console.WriteLine("Please enter Y to start a new game");
             String inputFromUser = Console.ReadLine();
             if (inputFromUser == "Y")
@@ -212,6 +214,7 @@ namespace Ex02_01
 
         public void PrintStartNewGameMessage()
         {
+            Console.Clear();
             Console.WriteLine("Starting a new game");
         }
 

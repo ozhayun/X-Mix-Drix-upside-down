@@ -19,11 +19,11 @@ namespace Ex02_01
 
         public void Run()
         {
-            UIDuringTheGame ui = new UIDuringTheGame();
-            int row = -1, column = -1;
-            char currentPlayerSign;
+            UIDuringTheGame   ui = new UIDuringTheGame();
+            int               row = -1;
+            int               column = -1;
+            char              currentPlayerSign;
 
-            Console.Clear();
             ui.PrintBoard(m_Board);
 
             while (!m_IsPlayerLosed && !m_IsPlayerWantsToQuit && !m_IsTie)
@@ -39,15 +39,12 @@ namespace Ex02_01
                     currentPlayerSign = m_UserPlayer.Sign;
                 }
 
-                if (!m_IsPlayerWantsToQuit)
-                {
-                    Console.Clear();
-                    ui.PrintBoard(m_Board);
-                    CheckGameStatus(ui, row, column, currentPlayerSign);
-                }
+                ui.PrintBoard(m_Board);
+                CheckGameStatus(ui, row, column, currentPlayerSign);
 
                 m_IsComputerPlayerTurn = !m_IsComputerPlayerTurn;
             }
+
         }
     }
 }

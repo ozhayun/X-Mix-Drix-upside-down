@@ -2,10 +2,10 @@
 {
     public class Game
     {
-        protected Board     m_Board;
-        protected bool      m_IsPlayerLosed;
-        protected bool      m_IsTie;
-        protected bool      m_IsPlayerWantsToQuit;
+        protected Board m_Board;
+        protected bool m_IsPlayerLosed;
+        protected bool m_IsTie;
+        protected bool m_IsPlayerWantsToQuit;
 
         public Game(Board i_Board, bool i_IsPlayerLosed, bool i_IsTie, bool m_IsPlayerWantsToQuit)
         {
@@ -15,10 +15,10 @@
             this.m_IsPlayerWantsToQuit = m_IsPlayerWantsToQuit;
         }
 
-        
+
         public void CheckGameStatus(UIDuringTheGame i_UI, int i_Row, int i_Column, char i_CurrentPlayerSign)
         {
-            if (IsGameFinishedWithLost(i_UI, i_Row, i_Column, i_CurrentPlayerSign) || IsGameFinishedWithTie(i_UI) || m_IsPlayerWantsToQuit)
+            if (m_IsPlayerWantsToQuit || IsGameFinishedWithLost(i_UI, i_Row, i_Column, i_CurrentPlayerSign) || IsGameFinishedWithTie(i_UI))
             {
                 if (i_UI.IsUserWantNewGame())
                 {
