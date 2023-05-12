@@ -27,7 +27,7 @@ namespace Ex02_01
         {
             if(!io_Board.IsFoundEmptyCellThatNotClosedSequence(ref io_Row, ref io_Coulmn, Sign))
             {
-                io_Board.SetRowAndColumnToBeTheFirstClearCell(ref io_Row, ref io_Coulmn);
+                io_Board.SetRowAndColumnToBeTheFirstClearCell(ref io_Row, ref io_Coulmn, Sign);
             }
         }
     }

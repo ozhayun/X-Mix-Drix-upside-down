@@ -66,7 +66,7 @@ namespace Ex02_01
             return isThisCellCloseSequence;
         }
 
-        public void SetRowAndColumnToBeTheFirstClearCell(ref int io_Row, ref int io_Coulmn)
+        public void SetRowAndColumnToBeTheFirstClearCell(ref int io_Row, ref int io_Coulmn, char i_UserSign)
         {
             bool foundClearCell = false;
 
@@ -78,6 +78,7 @@ namespace Ex02_01
                     {
                         io_Row = i;
                         io_Coulmn = j;
+                        AddPlayerSign(io_Row, io_Coulmn, i_UserSign);
                         foundClearCell = true;
                     }
                 }
