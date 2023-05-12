@@ -84,7 +84,6 @@ namespace Ex02_01
             }
         }
 
-
         public bool IsValidBoardSize(int i_BoardSizeToCheck)
         {
             bool isValidBoardSize = false;
@@ -159,7 +158,7 @@ namespace Ex02_01
                 isWinning = WinInMainDiagonal(i_PlayersSign);
             }
 
-            if (!isWinning && i_Row + i_Column == BoardSize + 1)
+            if (!isWinning && i_Row + i_Column == BoardSize - 1)
             {
                 isWinning = IsThereWinInSecondaryDiagonal(i_PlayersSign);
             }
@@ -183,6 +182,7 @@ namespace Ex02_01
         public bool IsThereWinInSecondaryDiagonal(char i_PlayersSign) 
         {
             bool isWinning = true;
+
             for (int i = 0; i < BoardSize; i++)
             {
                 if (m_Board[i, (BoardSize - 1 - i)] != i_PlayersSign)

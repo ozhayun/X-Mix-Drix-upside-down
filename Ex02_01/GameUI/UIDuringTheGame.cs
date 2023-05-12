@@ -150,16 +150,6 @@ namespace Ex02_01
             return isValid;
         }
 
-        private void GetValidRowAndColumnFromUserAndCheckQuiting(ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToQuit)
-        {
-            Console.WriteLine("Please enter your next move: ");
-            io_Row = getNumberFromUser(ref io_IsPlayerWantsToQuit);
-            if (!io_IsPlayerWantsToQuit)
-            {
-                io_Column = getNumberFromUser(ref io_IsPlayerWantsToQuit);
-            }
-        }
-
         private int getNumberFromUser(ref bool io_IsPlayerWantsToQuit)
         {
             int numberFromUser = -1;

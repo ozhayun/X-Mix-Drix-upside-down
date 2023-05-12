@@ -85,7 +85,6 @@ namespace Ex02_01
             }
         }
 
-
         private bool isGameFinishedWithLost(UIDuringTheGame i_UI, int i_Row, int i_Column)
         {
             bool isLost = false;
