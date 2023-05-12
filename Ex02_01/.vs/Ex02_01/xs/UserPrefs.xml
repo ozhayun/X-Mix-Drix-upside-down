@@ -1,0 +1,35 @@
+﻿<Properties StartupConfiguration="{8A72EB13-AB78-4B0F-9256-03AD57F52D62}|Default">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="GameUI/UIDuringTheGame.cs">
+    <Files>
+      <File FileName="GameUI/UIDuringTheGame.cs" Line="101" Column="14" />
+      <File FileName="GameLogic/Board.cs" Line="81" Column="1" />
+      <File FileName="GameLogic/Player.cs" Line="38" Column="1" />
+      <File FileName="GameLogic/GameWithTwoPlayers.cs" Line="44" Column="1" />
+      <File FileName="GameLogic/Game.cs" Line="36" Column="1" />
+      <File FileName="GameLogic/GameWithOnePlayer.cs" Line="46" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Ex02_01" expanded="True">
+            <Node name="Ex02_01" expanded="True">
+              <Node name="References" expanded="True" />
+              <Node name="GameLogic" expanded="True" />
+              <Node name="GameUI" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Ex02__01 PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>
