@@ -29,6 +29,7 @@ namespace Ex02_01
             {
                 io_Board.SetRowAndColumnToBeTheFirstClearCell(ref io_Row, ref io_Coulmn);
             }
+
         }
     }
 }
