@@ -11,9 +11,9 @@ namespace Ex02_01
 
         public GameWithOnePlayer(Board gameBoard) : base(gameBoard, false, false, false)
         {
-            m_UserPlayer = new Player('X', 0);
-            m_ComputerPlayer = new ComputerPlayer();
-            m_IsComputerPlayerTurn = false;
+            m_UserPlayer =              new Player('X', 0);
+            m_ComputerPlayer =          new ComputerPlayer();
+            m_IsComputerPlayerTurn =    false;
         }
 
 
@@ -22,7 +22,6 @@ namespace Ex02_01
             UIDuringTheGame   ui = new UIDuringTheGame();
             int               row = -1;
             int               column = -1;
-            char              currentPlayerSign;
 
             ui.PrintBoard(m_Board);
 
@@ -31,20 +30,16 @@ namespace Ex02_01
                 if (m_IsComputerPlayerTurn)
                 {
                     m_ComputerPlayer.AIMove(ref m_Board, ref row, ref column);
-                    currentPlayerSign = m_ComputerPlayer.Sign;
+                    CheckGameStatus(ui, row, column, m_ComputerPlayer.Sign, m_ComputerPlayer.Score, m_UserPlayer.Sign, m_UserPlayer.Score);
+
                 }
                 else
                 {
                     m_UserPlayer.Move(ui, ref m_Board, ref m_IsPlayerWantsToQuit, ref row, ref column);
-                    currentPlayerSign = m_UserPlayer.Sign;
+                    CheckGameStatus(ui, row, column, m_UserPlayer.Sign, m_UserPlayer.Score, m_ComputerPlayer.Sign, m_ComputerPlayer.Score);
                 }
-
-                ui.PrintBoard(m_Board);
-                CheckGameStatus(ui, row, column, currentPlayerSign);
-
                 m_IsComputerPlayerTurn = !m_IsComputerPlayerTurn;
             }
-
         }
     }
 }

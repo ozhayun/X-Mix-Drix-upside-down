@@ -16,10 +16,14 @@
         }
 
 
-        public void CheckGameStatus(UIDuringTheGame i_UI, int i_Row, int i_Column, char i_CurrentPlayerSign)
+        public void CheckGameStatus(UIDuringTheGame i_UI, int i_Row, int i_Column, char i_CurrentPlayerSign, int i_CurrentPlayerScore, char i_OtherPlayerSign, int i_OtherPlayerScore)
         {
+            i_UI.PrintBoard(m_Board);
+
             if (m_IsPlayerWantsToQuit || IsGameFinishedWithLost(i_UI, i_Row, i_Column, i_CurrentPlayerSign) || IsGameFinishedWithTie(i_UI))
             {
+                i_UI.PrintScores(i_CurrentPlayerSign, i_CurrentPlayerScore, i_OtherPlayerSign, i_OtherPlayerScore);
+
                 if (i_UI.IsUserWantNewGame())
                 {
                     m_IsPlayerLosed = m_IsTie = m_IsPlayerWantsToQuit = false;

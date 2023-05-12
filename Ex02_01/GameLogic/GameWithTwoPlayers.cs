@@ -19,7 +19,6 @@ namespace Ex02_01
         {
             UIDuringTheGame ui = new UIDuringTheGame();
             int row = -1, column = -1;
-            char currentPlayerSign;
 
             Console.Clear();
             ui.PrintBoard(m_Board);
@@ -29,19 +28,12 @@ namespace Ex02_01
                 if (m_IsFirstPlayerMove)
                 {
                     m_FirstPlayer.Move(ui, ref m_Board, ref m_IsPlayerWantsToQuit, ref row, ref column);
-                    currentPlayerSign = m_FirstPlayer.Sign;
+                    CheckGameStatus(ui, row, column, m_FirstPlayer.Sign, m_FirstPlayer.Score, m_SecondPlayer.Sign, m_SecondPlayer.Score);
                 }
                 else
                 {
                     m_SecondPlayer.Move(ui, ref m_Board, ref m_IsPlayerWantsToQuit, ref row, ref column);
-                    currentPlayerSign = m_SecondPlayer.Sign;
-                }
-
-                if(!m_IsPlayerWantsToQuit)
-                {
-                    Console.Clear();
-                    ui.PrintBoard(m_Board);
-                    CheckGameStatus(ui, row, column, currentPlayerSign);
+                    CheckGameStatus(ui, row, column, m_SecondPlayer.Sign, m_SecondPlayer.Score, m_FirstPlayer.Sign, m_FirstPlayer.Score);
                 }
 
                 m_IsFirstPlayerMove = !m_IsFirstPlayerMove;

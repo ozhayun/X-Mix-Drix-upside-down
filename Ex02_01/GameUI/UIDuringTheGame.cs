@@ -200,7 +200,6 @@ namespace Ex02_01
         public bool IsUserWantNewGame()
         {
             bool userWantsNewGame = false;
-            Console.Clear();
             Console.WriteLine("Please enter Y to start a new game");
             String inputFromUser = Console.ReadLine();
             if (inputFromUser == "Y")
@@ -222,6 +221,12 @@ namespace Ex02_01
         public void PrintTieMessage()
         {
             Console.WriteLine("There is a TIE!!!");
+        }
+
+        public void PrintScores(char i_CurrentPlayerSign, int i_CurrentPlayerScore, char i_OtherPlayerSign, int i_OtherPlayerScore)
+        {
+            Console.WriteLine($"Player: {i_OtherPlayerSign}, Score: {i_CurrentPlayerScore}");
+            Console.WriteLine($"Player: {i_OtherPlayerSign}, Score: {i_OtherPlayerScore}");
         }
     }
 }
