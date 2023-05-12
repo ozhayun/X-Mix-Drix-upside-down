@@ -2,10 +2,10 @@
 {
     public class Game
     {
-        protected Board m_Board;
-        protected bool m_IsPlayerLosed;
-        protected bool m_IsTie;
-        protected bool m_IsPlayerWantsToQuit;
+        protected Board     m_Board;
+        protected bool      m_IsPlayerLosed;
+        protected bool      m_IsTie;
+        protected bool      m_IsPlayerWantsToQuit;
 
         public Game(Board i_Board, bool i_IsPlayerLosed, bool i_IsTie, bool m_IsPlayerWantsToQuit)
         {
