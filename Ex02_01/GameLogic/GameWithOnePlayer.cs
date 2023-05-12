@@ -30,7 +30,6 @@ namespace Ex02_01
             {
                 if (m_IsComputerPlayerTurn)
                 {
-                    // m_ComputerPlayer.StupidMove(ref m_Board, ref row, ref column);
                     m_ComputerPlayer.AIMove(ref m_Board, ref row, ref column);
                     currentPlayerSign = m_ComputerPlayer.Sign;
                 }
