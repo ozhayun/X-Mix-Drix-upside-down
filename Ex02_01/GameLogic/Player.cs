@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Ex02_01
+﻿namespace Ex02_01
 {
     public class Player
     {
@@ -19,6 +17,7 @@ namespace Ex02_01
             {
                 return m_Sign;
             }
+
             set
             {
                 m_Sign = value;
@@ -31,6 +30,7 @@ namespace Ex02_01
             {
                 return m_Score;
             }
+
             set
             {
                 m_Score = value;
@@ -43,11 +43,11 @@ namespace Ex02_01
             {
                 io_Board.SetRowAndColumnToBeTheFirstClearCell(ref io_Row, ref io_Column, Sign);
             }
-
         }
-        public void HumanMove(UIDuringTheGame ui, ref Board io_Board, ref bool io_IsPlayerWantsToExit, ref int io_Row, ref int io_Column)
+
+        public void HumanMove(UIDuringTheGame i_UI, ref Board io_Board, ref bool io_IsPlayerWantsToExit, ref int io_Row, ref int io_Column)
         {
-            ui.GetRowAndColumnFromUserAndCheckQuiting(io_Board, ref io_Row, ref io_Column, ref io_IsPlayerWantsToExit);
+            i_UI.GetRowAndColumnFromUserAndCheckQuiting(io_Board, ref io_Row, ref io_Column, ref io_IsPlayerWantsToExit);
 
             if (!io_IsPlayerWantsToExit)
             {
@@ -56,4 +56,3 @@ namespace Ex02_01
         }
     }
 }
-

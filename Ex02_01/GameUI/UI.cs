@@ -22,8 +22,8 @@ namespace Ex02_01
 
         public void SetBoardFromUser(ref Board io_Board)
         {
-            int     boardSize = 0;
-            bool    isValid = false;
+            int boardSize = 0;
+            bool isValid = false;
 
             Console.WriteLine("Please enter a number between 3 and 9 for board size");
 
@@ -51,8 +51,8 @@ namespace Ex02_01
 
         public int GetTypeOfGameFromUser()
         {
-            int     gameType = 0;
-            bool    isValid = false;
+            int gameType = 0;
+            bool isValid = false;
 
             Console.WriteLine("Please enter 0 for playing against computer or 1 for two players");
 
@@ -79,7 +79,7 @@ namespace Ex02_01
             return gameType;
         }
 
-        public void PrintEndMenu()
+        private void PrintEndMenu()
         {
             Ex02.ConsoleUtils.Screen.Clear();
             Console.WriteLine("Goodbye!");

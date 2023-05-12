@@ -2,7 +2,7 @@
 {
     public class Board
     {
-        const   char k_BlankChar = ' ';
+        private const char k_BlankChar = ' ';
         private char[,] m_Board;
         private int m_CounterOfFullCells;
 
@@ -44,6 +44,7 @@
                     }
                 }
             }
+
             return foundClearCellThatNotClosedSequence;
         }
 
@@ -57,6 +58,7 @@
                 removePlayerSign(i_Row, i_Column);
                 isThisCellCloseSequence = true;
             }
+
             return isThisCellCloseSequence;
         }
 
@@ -92,7 +94,7 @@
 
         public bool IsRowAndColumnInRange(int i_Row, int i_Column)
         {
-            return 0 <= i_Row && i_Row < BoardSize && 0 <= i_Column && i_Column < BoardSize;
+            return i_Row >= 0  && i_Row < BoardSize && i_Column >= 0 && i_Column < BoardSize;
         }
 
         public bool IsThisCellClear(int i_Row, int i_Column)
@@ -109,6 +111,7 @@
             {
                 isLose = true;
             }
+
             return isLose;
         }
 
@@ -122,6 +125,7 @@
                     isWinning = false;
                 }
             }
+
             return isWinning;
         }
 
@@ -135,6 +139,7 @@
                     isWinning = false;
                 }
             }
+
             return isWinning;
         }
 
@@ -155,7 +160,7 @@
             return isWinning;
         }
 
-        public bool WinInMainDiagonal(char i_PlayersSign) 
+        private bool WinInMainDiagonal(char i_PlayersSign) 
         {
             bool isWinning = true;
             for (int i = 0; i < BoardSize; i++)
@@ -165,10 +170,11 @@
                     isWinning = false;
                 }
             }
+
             return isWinning;
         }
 
-        public bool IsThereWinInSecondaryDiagonal(char i_PlayersSign) 
+        private bool IsThereWinInSecondaryDiagonal(char i_PlayersSign) 
         {
             bool isWinning = true;
 
@@ -179,10 +185,11 @@
                     isWinning = false;
                 }
             }
+
             return isWinning;
         }
 
-        public bool IsGameFinishedWithTie(UIDuringTheGame ui)
+        public bool IsGameFinishedWithTie()
         {
             return m_CounterOfFullCells == BoardSize * BoardSize;
         }
@@ -197,6 +204,7 @@
             m_Board[i_Row, i_Column] = i_UserSign;
             m_CounterOfFullCells++;
         }
+
         private void removePlayerSign(int i_Row, int i_Column)
         {
             m_Board[i_Row, i_Column] = k_BlankChar;
@@ -212,6 +220,7 @@
                     m_Board[i, j] = k_BlankChar;
                 }
             }
+
             m_CounterOfFullCells = 0;
         }
     }

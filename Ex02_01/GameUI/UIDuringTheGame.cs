@@ -36,6 +36,7 @@ namespace Ex02_01
                 {
                     Console.Write($"{i_Row + 1}|");
                 }
+
                 Console.Write($" {board.GetCellValueInBoard(i_Row, column)} |");
             }
 
@@ -68,9 +69,9 @@ namespace Ex02_01
 
         private void getValidMoveFromUser(Board i_Board, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToQuit)
         {
-            string      input;
-            string[]    stringNumbers;
-            bool        isValid = false;
+            string input;
+            string[] stringNumbers;
+            bool isValid = false;
 
             while(!isValid && !io_IsPlayerWantsToQuit)
             {
@@ -79,7 +80,7 @@ namespace Ex02_01
 
                 if (stringNumbers.Length == 2)
                 {
-                    handleMoveLengthIsTwo(stringNumbers, ref io_Row,ref io_Column, ref io_IsPlayerWantsToQuit, out isValid);
+                    handleMoveLengthIsTwo(stringNumbers, ref io_Row, ref io_Column, ref io_IsPlayerWantsToQuit, out isValid);
                 }
                 else if (stringNumbers.Length == 1)
                 {
@@ -129,7 +130,7 @@ namespace Ex02_01
             {
                 io_IsValid = i_Board.IsRowAndColumnInRange(i_Row, i_Column);
             }
-            if (!io_IsValid)
+            else
             {
                 Console.WriteLine("You entered invalid input, please try again");
             }
@@ -158,12 +159,11 @@ namespace Ex02_01
             while (!isValid)
             {
                 string input = Console.ReadLine();
-                if (input.Equals('Q'))
+                if (input.Equals("Q"))
                 {
                     io_IsPlayerWantsToQuit = true;
                     isValid = true;
                 }
-
                 else if (int.TryParse(input, out numberFromUser))
                 {
                     isValid = true;
@@ -173,6 +173,7 @@ namespace Ex02_01
                     Console.WriteLine("You entered invalid input, please try again");
                 }
             }
+
             return numberFromUser - 1;
         }
         
@@ -185,7 +186,7 @@ namespace Ex02_01
         {
             bool userWantsNewGame = false;
             Console.WriteLine("Please enter Y to start a new game");
-            String inputFromUser = Console.ReadLine();
+            string inputFromUser = Console.ReadLine();
             if (inputFromUser == "Y")
             {
                 userWantsNewGame = true;
