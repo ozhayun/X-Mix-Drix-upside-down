@@ -28,10 +28,9 @@ namespace Ex02_01
 
             while (!m_IsPlayerLosed && !m_IsPlayerWantsToQuit && !m_IsTie)
             {
-               
                 if (m_IsComputerPlayerTurn)
                 {
-                    //m_ComputerPlayer.StupidMove(ref m_Board, ref row, ref column);
+                    // m_ComputerPlayer.StupidMove(ref m_Board, ref row, ref column);
                     m_ComputerPlayer.AIMove(ref m_Board, ref row, ref column);
                     currentPlayerSign = m_ComputerPlayer.Sign;
                 }

@@ -7,13 +7,11 @@ namespace Ex02_01
         private char    m_Sign;
         private int     m_Score;
 
-
         public Player(char i_Sign, int i_Score)
         {
             m_Sign = i_Sign;
             m_Score = i_Score;
         }
-
 
         public char Sign
         {
@@ -26,7 +24,6 @@ namespace Ex02_01
                 m_Sign = value;
             }
         }
-
 
         public void Move(UIDuringTheGame ui, ref Board io_Board, ref bool io_IsPlayerWantsToExit, ref int io_Row, ref int io_Column)
         {

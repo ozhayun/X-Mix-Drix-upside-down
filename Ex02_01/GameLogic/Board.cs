@@ -26,6 +26,15 @@ namespace Ex02_01
             }
         }
 
+        public char[,] BoardMatrix
+        {
+            set
+            {
+                m_Board = value;
+                ClearBoard();
+            }
+        }
+
         public bool IsFoundEmptyCellThatNotClosedSequence(int io_Row, int io_Coulmn, char i_PlayerSign)
         {
             bool foundClearCellThatNotClosedSequence = false;
@@ -74,14 +83,7 @@ namespace Ex02_01
             }
         }
 
-        public char[,] BoardMatrix
-        {
-            set
-            {
-                m_Board = value;
-                ClearBoard();
-            }
-        }
+
         public bool IsValidBoardSize(int i_BoardSizeToCheck)
         {
             bool isValidBoardSize = false;

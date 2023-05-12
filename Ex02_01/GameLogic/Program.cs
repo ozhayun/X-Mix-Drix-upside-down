@@ -9,8 +9,8 @@ namespace Ex02_01
     {
         public static void Main()
         {
-            UI playTheGame = new UI();
-            playTheGame.Play();
+            UI ui = new UI();
+            ui.Play();
         }
     }
 }
