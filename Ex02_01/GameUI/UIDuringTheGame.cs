@@ -9,16 +9,16 @@ namespace Ex02_01
             int boardSize = board.BoardSize;
 
             Console.Clear();
-            PrintColumnsNumber(boardSize);
+            printColumnsNumber(boardSize);
             
             for (int i = 0; i < boardSize; i++)
             {
-                PrintRowOfBoard(board, i);
-                PrintBorderBetweenBoardRows(boardSize);
+                printRowOfBoard(board, i);
+                printBorderBetweenBoardRows(boardSize);
             }
         }
 
-        private void PrintColumnsNumber(int i_BoardSize)
+        private void printColumnsNumber(int i_BoardSize)
         {
             for (int column = 0; column < i_BoardSize; column++)
             {
@@ -28,7 +28,7 @@ namespace Ex02_01
             Console.WriteLine();
         }
 
-        private void PrintRowOfBoard(Board board, int i_Row)
+        private void printRowOfBoard(Board board, int i_Row)
         {
             for (int column = 0; column < board.BoardSize; column++)
             {
@@ -42,7 +42,7 @@ namespace Ex02_01
             Console.WriteLine();
         }
 
-        private void PrintBorderBetweenBoardRows(int i_BoardSize)
+        private void printBorderBetweenBoardRows(int i_BoardSize)
         {
             Console.Write(" ");
 
@@ -54,21 +54,19 @@ namespace Ex02_01
             Console.WriteLine("=");
         }
 
-
         public void GetRowAndColumnFromUserAndCheckQuiting(Board i_Board, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToQuit)
         {
             Console.WriteLine("Please enter your next move or Q to quit the game");
 
-            GetValidMoveFromUser(i_Board, ref io_Row, ref io_Column, ref io_IsPlayerWantsToQuit);
+            getValidMoveFromUser(i_Board, ref io_Row, ref io_Column, ref io_IsPlayerWantsToQuit);
             while(!io_IsPlayerWantsToQuit && !i_Board.IsThisCellClear(io_Row, io_Column))
             {
                 Console.WriteLine($"This cell ({io_Row + 1},{io_Column + 1}) is filled, please enter new move");
-                GetValidMoveFromUser(i_Board, ref io_Row, ref io_Column, ref io_IsPlayerWantsToQuit);
+                getValidMoveFromUser(i_Board, ref io_Row, ref io_Column, ref io_IsPlayerWantsToQuit);
             }
         }
 
-
-        private void GetValidMoveFromUser(Board i_Board, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToQuit)
+        private void getValidMoveFromUser(Board i_Board, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToQuit)
         {
             string      input;
             string[]    stringNumbers;
@@ -81,28 +79,28 @@ namespace Ex02_01
 
                 if (stringNumbers.Length == 2)
                 {
-                   HandleMoveLengthIsTwo(stringNumbers, ref io_Row,ref io_Column, ref io_IsPlayerWantsToQuit, out isValid);
+                    handleMoveLengthIsTwo(stringNumbers, ref io_Row,ref io_Column, ref io_IsPlayerWantsToQuit, out isValid);
                 }
                 else if (stringNumbers.Length == 1)
                 {
-                   HandleMoveLengthIsOne(stringNumbers, ref io_Row, ref io_Column, ref io_IsPlayerWantsToQuit, out isValid);
+                    handleMoveLengthIsOne(stringNumbers, ref io_Row, ref io_Column, ref io_IsPlayerWantsToQuit, out isValid);
                 }
 
                 if (!io_IsPlayerWantsToQuit)
                 {
-                    CheckIfMoveInRange(i_Board, ref isValid, io_Row, io_Column);
+                    checkIfMoveInRange(i_Board, ref isValid, io_Row, io_Column);
                 }
             }
         }
 
-        private void HandleMoveLengthIsTwo(string[] i_StringNumbers, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToQuit, out bool o_IsValid)
+        private void handleMoveLengthIsTwo(string[] i_StringNumbers, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToQuit, out bool o_IsValid)
         {
             o_IsValid = false;
-            if (CastStringToNumberAndCheckQuit(i_StringNumbers[0], out io_Row, ref io_IsPlayerWantsToQuit))
+            if (castStringToNumberAndCheckQuit(i_StringNumbers[0], out io_Row, ref io_IsPlayerWantsToQuit))
             {
                 if (!io_IsPlayerWantsToQuit)
                 {
-                    if (CastStringToNumberAndCheckQuit(i_StringNumbers[1], out io_Column, ref io_IsPlayerWantsToQuit))
+                    if (castStringToNumberAndCheckQuit(i_StringNumbers[1], out io_Column, ref io_IsPlayerWantsToQuit))
                     {
                         o_IsValid = true;
                     }
@@ -110,22 +108,22 @@ namespace Ex02_01
             }
         }
 
-        private void HandleMoveLengthIsOne(string[] i_StringNumbers, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToQuit, out bool o_IsValid)
+        private void handleMoveLengthIsOne(string[] i_StringNumbers, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToQuit, out bool o_IsValid)
         {
             o_IsValid = false;
 
-            if (CastStringToNumberAndCheckQuit(i_StringNumbers[0], out io_Row, ref io_IsPlayerWantsToQuit))
+            if (castStringToNumberAndCheckQuit(i_StringNumbers[0], out io_Row, ref io_IsPlayerWantsToQuit))
             {
                 if (!io_IsPlayerWantsToQuit)
                 {
                     Console.WriteLine("Please enter column");
-                    io_Column = GetNumberFromUser(ref io_IsPlayerWantsToQuit);
+                    io_Column = getNumberFromUser(ref io_IsPlayerWantsToQuit);
                     o_IsValid = true;
                 }
             }
         }
 
-        private void CheckIfMoveInRange(Board i_Board, ref bool io_IsValid, int i_Row, int i_Column)
+        private void checkIfMoveInRange(Board i_Board, ref bool io_IsValid, int i_Row, int i_Column)
         {
             if (io_IsValid)
             {
@@ -137,7 +135,7 @@ namespace Ex02_01
             }
         }
 
-        private bool CastStringToNumberAndCheckQuit(string i_StringToCast, out int o_Number, ref bool io_IsPlayerWantsToQuit)
+        private bool castStringToNumberAndCheckQuit(string i_StringToCast, out int o_Number, ref bool io_IsPlayerWantsToQuit)
         {
             bool isValid;
 
@@ -152,19 +150,17 @@ namespace Ex02_01
             return isValid;
         }
 
-
         private void GetValidRowAndColumnFromUserAndCheckQuiting(ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToQuit)
         {
             Console.WriteLine("Please enter your next move: ");
-            io_Row = GetNumberFromUser(ref io_IsPlayerWantsToQuit);
+            io_Row = getNumberFromUser(ref io_IsPlayerWantsToQuit);
             if (!io_IsPlayerWantsToQuit)
             {
-                io_Column = GetNumberFromUser(ref io_IsPlayerWantsToQuit);
+                io_Column = getNumberFromUser(ref io_IsPlayerWantsToQuit);
             }
         }
 
-
-        private int GetNumberFromUser(ref bool io_IsPlayerWantsToQuit)
+        private int getNumberFromUser(ref bool io_IsPlayerWantsToQuit)
         {
             int numberFromUser = -1;
             bool isValid = false;
@@ -189,13 +185,11 @@ namespace Ex02_01
             }
             return numberFromUser - 1;
         }
-
         
         public void PrintLosingMessage(char i_LossingPlayerSign)
         {
             Console.WriteLine($"Player {i_LossingPlayerSign} lost!!!");
         }
-
 
         public bool IsUserWantNewGame()
         {
@@ -210,13 +204,11 @@ namespace Ex02_01
             return userWantsNewGame;
         }
 
-
         public void PrintStartNewGameMessage()
         {
             Console.Clear();
             Console.WriteLine("Starting a new game");
         }
-
 
         public void PrintTieMessage()
         {

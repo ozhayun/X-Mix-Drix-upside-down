@@ -7,10 +7,9 @@ namespace Ex02_01
 {
     public class Board
     {
-        const char          k_BlankChar = ' ';
-
-        private char[,]     m_Board;
-        private int         m_CounterOfFullCells;
+        const   char k_BlankChar = ' ';
+        private char[,] m_Board;
+        private int m_CounterOfFullCells;
 
         public Board()
         {
@@ -42,7 +41,7 @@ namespace Ex02_01
             {
                 for (int j = 0; j < BoardSize && !foundClearCellThatNotClosedSequence; j++)
                 {
-                    if (IsThisCellClear(i, j) && !IsThisCellCloseSequence(i, j, i_PlayerSign))
+                    if (IsThisCellClear(i, j) && !isThisCellCloseSequence(i, j, i_PlayerSign))
                     {
                         io_Row = i;
                         io_Coulmn = j;
@@ -53,14 +52,14 @@ namespace Ex02_01
             return foundClearCellThatNotClosedSequence;
         }
 
-        private bool IsThisCellCloseSequence(int i_Row, int i_Column, char i_UserSign)
+        private bool isThisCellCloseSequence(int i_Row, int i_Column, char i_UserSign)
         {
             bool isThisCellCloseSequence = false;
             AddPlayerSign(i_Row, i_Column, i_UserSign);
 
             if (IsGameFinishedWithLost(i_UserSign, i_Row, i_Column))
             {
-                RemovePlayerSign(i_Row, i_Column);
+                removePlayerSign(i_Row, i_Column);
                 isThisCellCloseSequence = true;
             }
             return isThisCellCloseSequence;
@@ -116,16 +115,16 @@ namespace Ex02_01
         public bool IsGameFinishedWithLost(char i_PlayersSign, int i_Row, int i_Column)
         {
             bool isLose = false;
-            if (IsThereRowSequence(i_PlayersSign, i_Row) ||
-                IsThereColumnSequence(i_PlayersSign, i_Column) ||
-                IsThereDiagonalSequence(i_PlayersSign, i_Row, i_Column))
+            if (isThereRowSequence(i_PlayersSign, i_Row) ||
+                isThereColumnSequence(i_PlayersSign, i_Column) ||
+                isThereDiagonalSequence(i_PlayersSign, i_Row, i_Column))
             {
                 isLose = true;
             }
             return isLose;
         }
 
-        private bool IsThereRowSequence(char i_PlayersSign, int i_Row) 
+        private bool isThereRowSequence(char i_PlayersSign, int i_Row) 
         {
             bool isWinning = true;
             for (int i = 0; i < BoardSize; i++)
@@ -138,7 +137,7 @@ namespace Ex02_01
             return isWinning;
         }
 
-        private bool IsThereColumnSequence(char i_PlayersSign, int i_Column) 
+        private bool isThereColumnSequence(char i_PlayersSign, int i_Column) 
         {
             bool isWinning = true;
             for (int i = 0; i < BoardSize; i++)
@@ -151,7 +150,7 @@ namespace Ex02_01
             return isWinning;
         }
 
-        private bool IsThereDiagonalSequence(char i_PlayersSign, int i_Row, int i_Column) 
+        private bool isThereDiagonalSequence(char i_PlayersSign, int i_Row, int i_Column) 
         {
             bool isWinning = false;
 
@@ -209,7 +208,7 @@ namespace Ex02_01
             m_Board[i_Row, i_Column] = i_UserSign;
             m_CounterOfFullCells++;
         }
-        private void RemovePlayerSign(int i_Row, int i_Column)
+        private void removePlayerSign(int i_Row, int i_Column)
         {
             m_Board[i_Row, i_Column] = k_BlankChar;
             m_CounterOfFullCells--;

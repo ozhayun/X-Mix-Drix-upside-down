@@ -4,8 +4,6 @@ namespace Ex02_01
 {
     public class UI
     {
-
-
         public void Play()
         {
             Board board = new Board();
@@ -77,6 +75,7 @@ namespace Ex02_01
                     Console.WriteLine("Invalid input. Please enter a valid number.");
                 }
             }
+
             return gameType;
         }
 

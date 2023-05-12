@@ -35,10 +35,7 @@
     <Compile Include="GameUI\UI.cs" />
     <Compile Include="GameUI\UIDuringTheGame.cs" />
     <Compile Include="GameLogic\Board.cs" />
-    <Compile Include="GameLogic\ComputerPlayer.cs" />
     <Compile Include="GameLogic\Game.cs" />
-    <Compile Include="GameLogic\GameWithOnePlayer.cs" />
-    <Compile Include="GameLogic\GameWithTwoPlayers.cs" />
     <Compile Include="GameLogic\Player.cs" />
     <Compile Include="GameLogic\Program.cs" />
   </ItemGroup>

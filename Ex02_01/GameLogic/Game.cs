@@ -10,21 +10,27 @@ namespace Ex02_01
             TwoHumanPlayers
         }
 
+        private enum ePlayersSigns
+        {
+            X = 'X',
+            O = 'O'
+        }
+
         private int m_TypeOfGame;
-        protected Board     m_Board;
+        private Board m_Board;
         private Player m_FirstPlayer;
         private Player m_SecondPlayer;
-        protected bool      m_IsPlayerLosed;
-        protected bool      m_IsTie;
-        protected bool      m_IsPlayerWantsToQuit;
+        private bool m_IsPlayerLosed;
+        private bool m_IsTie;
+        private bool m_IsPlayerWantsToQuit;
         private bool m_IsFirstPlayerMove = false;
 
         public Game(int i_TypeOfGame, ref Board io_Board)
         {
             this.m_TypeOfGame = i_TypeOfGame;
             this.m_Board = io_Board;
-            this.m_FirstPlayer = new Player('X', 0);
-            this.m_SecondPlayer = new Player('O', 0);
+            this.m_FirstPlayer = new Player((char)ePlayersSigns.X, 0);
+            this.m_SecondPlayer = new Player((char)ePlayersSigns.O, 0);
             this.m_IsPlayerLosed = false;
             this.m_IsTie = false;
             this.m_IsPlayerWantsToQuit = false;
@@ -56,16 +62,17 @@ namespace Ex02_01
                         m_SecondPlayer.HumanMove(ui, ref m_Board, ref m_IsPlayerWantsToQuit, ref row, ref column);
                     }
                 }
-                CheckGameStatus(ui, row, column);
+
+                checkGameStatus(ui, row, column);
                 m_IsFirstPlayerMove = !m_IsFirstPlayerMove;
             }
         }
 
-        public void CheckGameStatus(UIDuringTheGame i_UI, int i_Row, int i_Column)
+        private void checkGameStatus(UIDuringTheGame i_UI, int i_Row, int i_Column)
         {
             i_UI.PrintBoard(m_Board);
 
-            if (m_IsPlayerWantsToQuit || IsGameFinishedWithLost(i_UI, i_Row, i_Column) || IsGameFinishedWithTie(i_UI))
+            if (m_IsPlayerWantsToQuit || isGameFinishedWithLost(i_UI, i_Row, i_Column) || isGameFinishedWithTie(i_UI))
             {
                 i_UI.PrintScores(m_FirstPlayer, m_SecondPlayer);
 
@@ -79,20 +86,21 @@ namespace Ex02_01
         }
 
 
-        public bool IsGameFinishedWithLost(UIDuringTheGame i_UI, int i_Row, int i_Column)
+        private bool isGameFinishedWithLost(UIDuringTheGame i_UI, int i_Row, int i_Column)
         {
             bool isLost = false;
-            if (m_Board.IsGameFinishedWithLost(GetCurrentPlayerSign(), i_Row, i_Column))
+            if (m_Board.IsGameFinishedWithLost(getCurrentPlayerSign(), i_Row, i_Column))
             {
-                AddPlayerScore();
-                i_UI.PrintLosingMessage(GetCurrentPlayerSign());
+                addPlayerScore();
+                i_UI.PrintLosingMessage(getCurrentPlayerSign());
                 m_IsPlayerLosed = true;
                 isLost = true;
             }
+
             return isLost;
         }
 
-        private void AddPlayerScore()
+        private void addPlayerScore()
         {
             if (m_IsFirstPlayerMove)
             {
@@ -104,9 +112,10 @@ namespace Ex02_01
             }
         }
 
-        private char GetCurrentPlayerSign()
+        private char getCurrentPlayerSign()
         {
-            char resSign = 'X';
+            char resSign;
+
             if (m_IsFirstPlayerMove)
             {
                 resSign = m_FirstPlayer.Sign;
@@ -115,10 +124,11 @@ namespace Ex02_01
             {
                 resSign = m_SecondPlayer.Sign;
             }
+
             return resSign;
         }
 
-        public bool IsGameFinishedWithTie(UIDuringTheGame i_UI)
+        private bool isGameFinishedWithTie(UIDuringTheGame i_UI)
         {
             bool isTie = false;
             if (m_Board.IsGameFinishedWithTie(i_UI))
@@ -127,6 +137,7 @@ namespace Ex02_01
                 m_IsTie = true;
                 isTie = true;
             }
+
             return isTie;
         }
     }
