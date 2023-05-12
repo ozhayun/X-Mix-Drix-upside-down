@@ -35,7 +35,7 @@ namespace Ex02_01
             }
         }
 
-        public bool IsFoundEmptyCellThatNotClosedSequence(int io_Row, int io_Coulmn, char i_PlayerSign)
+        public bool IsFoundEmptyCellThatNotClosedSequence(ref int io_Row, ref int io_Coulmn, char i_PlayerSign)
         {
             bool foundClearCellThatNotClosedSequence = false;
             for (int i = 0; i < BoardSize && !foundClearCellThatNotClosedSequence; i++)
@@ -66,9 +66,10 @@ namespace Ex02_01
             return isThisCellCloseSequence;
         }
 
-        public void SetRowAndColumnToBeTheFirstClearCell(int io_Row, int io_Coulmn)
+        public void SetRowAndColumnToBeTheFirstClearCell(ref int io_Row, ref int io_Coulmn)
         {
             bool foundClearCell = false;
+
             for (int i = 0; i < BoardSize && !foundClearCell; i++)
             {
                 for (int j = 0; j < BoardSize && !foundClearCell; j++)
