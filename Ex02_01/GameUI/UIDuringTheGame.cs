@@ -8,7 +8,7 @@ namespace Ex02_01
         {
             int boardSize = board.BoardSize;
 
-            Console.Clear();
+            Ex02.ConsoleUtils.Screen.Clear();
             printColumnsNumber(boardSize);
             
             for (int i = 0; i < boardSize; i++)
@@ -196,7 +196,7 @@ namespace Ex02_01
 
         public void PrintStartNewGameMessage()
         {
-            Console.Clear();
+            Ex02.ConsoleUtils.Screen.Clear();
             Console.WriteLine("Starting a new game");
         }
 

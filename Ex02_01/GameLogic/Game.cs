@@ -42,7 +42,7 @@ namespace Ex02_01
             UIDuringTheGame ui = new UIDuringTheGame();
             int row = -1, column = -1;
 
-            Console.Clear();
+            Ex02.ConsoleUtils.Screen.Clear();
             ui.PrintBoard(m_Board);
 
             while (!m_IsPlayerLosed && !m_IsPlayerWantsToQuit && !m_IsTie)

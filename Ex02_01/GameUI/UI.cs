@@ -81,7 +81,7 @@ namespace Ex02_01
 
         public void PrintEndMenu()
         {
-            Console.Clear();
+            Ex02.ConsoleUtils.Screen.Clear();
             Console.WriteLine("Goodbye!");
             Console.ReadLine();
         }
