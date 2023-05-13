@@ -9,6 +9,7 @@ obj/
 *.xml
 *.json
 *.csproj
+
 # User-specific files
 *.suo
 *.user

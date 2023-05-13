@@ -54,7 +54,8 @@
                 {
                     if (m_TypeOfGame == (int)eGameType.AgainstTheCumputer)
                     {
-                        m_SecondPlayer.ComputerMove(ref m_Board, ref row, ref column);
+                        //m_SecondPlayer.ComputerMove(ref m_Board, ref row, ref column);
+                        m_SecondPlayer.ComputerMoveSmarter(ref m_Board, ref row, ref column); 
                     }
                     else if (m_TypeOfGame == (int)eGameType.TwoHumanPlayers)
                     {

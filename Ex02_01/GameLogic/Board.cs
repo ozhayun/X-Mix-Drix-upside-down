@@ -36,7 +36,7 @@
             {
                 for (int j = 0; j < BoardSize && !foundClearCellThatNotClosedSequence; j++)
                 {
-                    if (IsThisCellClear(i, j) && !isThisCellCloseSequence(i, j, i_PlayerSign))
+                    if (IsThisCellClear(i, j) && !IsThisCellCloseSequence(i, j, i_PlayerSign))
                     {
                         io_Row = i;
                         io_Coulmn = j;
@@ -48,7 +48,7 @@
             return foundClearCellThatNotClosedSequence;
         }
 
-        private bool isThisCellCloseSequence(int i_Row, int i_Column, char i_UserSign)
+        public bool IsThisCellCloseSequence(int i_Row, int i_Column, char i_UserSign)
         {
             bool isThisCellCloseSequence = false;
             AddPlayerSign(i_Row, i_Column, i_UserSign);
