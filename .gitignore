@@ -6,7 +6,9 @@
 bin/
 obj/
 .vs/
-
+*.xml
+*.json
+*.csproj
 # User-specific files
 *.suo
 *.user
