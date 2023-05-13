@@ -1,12 +1,17 @@
 ﻿<Properties StartupConfiguration="{8A72EB13-AB78-4B0F-9256-03AD57F52D62}|Default">
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/ozhayun/C#Projects/X-Mix-Drix-upside-down/Ex02_01/GameLogic/Board.cs" relfile="GameLogic/Board.cs" line="182" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="GameLogic/Player.cs">
     <Files>
-      <File FileName="GameLogic/Player.cs" Line="26" Column="32" />
+      <File FileName="GameLogic/Game.cs" Line="18" Column="1" />
+      <File FileName="GameUI/UIDuringTheGame.cs" Line="160" Column="51" />
+      <File FileName="GameLogic/Player.cs" Line="50" Column="16" />
+      <File FileName="GameLogic/Board.cs" Line="46" Column="14" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,7 +19,7 @@
           <Node name="Ex02_01" expanded="True">
             <Node name="Ex02_01" expanded="True">
               <Node name="GameLogic" expanded="True">
-                <Node name="GameWithTwoPlayers.cs" selected="True" />
+                <Node name="BoardValidator.cs" selected="True" />
               </Node>
               <Node name="GameUI" expanded="True" />
             </Node>
