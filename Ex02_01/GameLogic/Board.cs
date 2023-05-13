@@ -55,10 +55,10 @@
 
             if (IsGameFinishedWithLost(i_UserSign, i_Row, i_Column))
             {
-                removePlayerSign(i_Row, i_Column);
                 isThisCellCloseSequence = true;
             }
 
+            removePlayerSign(i_Row, i_Column);
             return isThisCellCloseSequence;
         }
 

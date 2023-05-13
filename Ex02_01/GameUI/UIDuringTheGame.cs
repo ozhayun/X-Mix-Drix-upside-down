@@ -80,11 +80,11 @@ namespace Ex02_01
 
                 if (stringNumbers.Length == 2)
                 {
-                    handleMoveLengthIsTwo(stringNumbers, ref io_Row, ref io_Column, ref io_IsPlayerWantsToQuit, out isValid);
+                    handleMoveLengthForTwoNumbers(stringNumbers, ref io_Row, ref io_Column, ref io_IsPlayerWantsToQuit, out isValid);
                 }
                 else if (stringNumbers.Length == 1)
                 {
-                    handleMoveLengthIsOne(stringNumbers, ref io_Row, ref io_Column, ref io_IsPlayerWantsToQuit, out isValid);
+                    handleMoveLengthForOneNumber(stringNumbers, ref io_Row, ref io_Column, ref io_IsPlayerWantsToQuit, out isValid);
                 }
 
                 if (!io_IsPlayerWantsToQuit)
@@ -94,7 +94,7 @@ namespace Ex02_01
             }
         }
 
-        private void handleMoveLengthIsTwo(string[] i_StringNumbers, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToQuit, out bool o_IsValid)
+        private void handleMoveLengthForTwoNumbers(string[] i_StringNumbers, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToQuit, out bool o_IsValid)
         {
             o_IsValid = false;
             if (castStringToNumberAndCheckQuit(i_StringNumbers[0], out io_Row, ref io_IsPlayerWantsToQuit))
@@ -109,7 +109,7 @@ namespace Ex02_01
             }
         }
 
-        private void handleMoveLengthIsOne(string[] i_StringNumbers, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToQuit, out bool o_IsValid)
+        private void handleMoveLengthForOneNumber(string[] i_StringNumbers, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToQuit, out bool o_IsValid)
         {
             o_IsValid = false;
 
@@ -130,7 +130,8 @@ namespace Ex02_01
             {
                 io_IsValid = i_Board.IsRowAndColumnInRange(i_Row, i_Column);
             }
-            else
+
+            if(!io_IsValid)
             {
                 Console.WriteLine("You entered invalid input, please try again");
             }
@@ -197,7 +198,6 @@ namespace Ex02_01
 
         public void PrintStartNewGameMessage()
         {
-            Ex02.ConsoleUtils.Screen.Clear();
             Console.WriteLine("Starting a new game");
         }
 

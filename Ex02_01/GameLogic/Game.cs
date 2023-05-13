@@ -54,8 +54,7 @@
                 {
                     if (m_TypeOfGame == (int)eGameType.AgainstTheCumputer)
                     {
-                        //m_SecondPlayer.ComputerMove(ref m_Board, ref row, ref column);
-                        m_SecondPlayer.ComputerMoveSmarter(ref m_Board, ref row, ref column); 
+                        m_SecondPlayer.SmarterComputerMove(ref m_Board, ref row, ref column); 
                     }
                     else if (m_TypeOfGame == (int)eGameType.TwoHumanPlayers)
                     {
@@ -78,11 +77,17 @@
 
                 if (m_UIDuringTheGame.IsUserWantNewGame())
                 {
-                    m_IsPlayerLosed = m_IsTie = m_IsPlayerWantsToQuit = false;
-                    m_Board.ClearBoard();
-                    m_UIDuringTheGame.PrintStartNewGameMessage();
+                    prepareNewGame();
                 }
             }
+        }
+
+        private void prepareNewGame()
+        {
+            m_IsPlayerLosed = m_IsTie = m_IsPlayerWantsToQuit = false;
+            m_Board.ClearBoard();
+            m_UIDuringTheGame.PrintBoard(m_Board);
+            m_UIDuringTheGame.PrintStartNewGameMessage();
         }
 
         private bool isGameFinishedWithLost(int i_Row, int i_Column)

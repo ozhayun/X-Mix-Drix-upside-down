@@ -39,15 +39,7 @@ namespace Ex02_01
             }
         }
 
-        public void ComputerMove(ref Board io_Board, ref int io_Row, ref int io_Column)
-        {
-            if (!io_Board.IsFoundEmptyCellThatNotClosedSequence(ref io_Row, ref io_Column, Sign))
-            {
-                io_Board.SetRowAndColumnToBeTheFirstClearCell(ref io_Row, ref io_Column, Sign);
-            }
-        }
-
-        public void ComputerMoveSmarter(ref Board io_Board, ref int io_Row, ref int io_Column)
+        public void SmarterComputerMove(ref Board io_Board, ref int io_Row, ref int io_Column)
         {
             int i = 0;
 
@@ -74,8 +66,8 @@ namespace Ex02_01
 
         private void GetRowAndCol(Random i_Random, int i_BoardSize, out int o_Row, out int o_Column)
         {
-            o_Row = i_Random.Next(1, i_BoardSize);
-            o_Column = i_Random.Next(1, i_BoardSize);
+            o_Row = i_Random.Next(0, i_BoardSize);
+            o_Column = i_Random.Next(0, i_BoardSize);
         }
 
         public void HumanMove(UIDuringTheGame i_UI, ref Board io_Board, ref bool io_IsPlayerWantsToExit, ref int io_Row, ref int io_Column)
