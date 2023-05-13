@@ -3,10 +3,9 @@
 
 *.exe
 *.
-*.pdb
-*.cache
 bin/
 obj/
+*.vs
 
 # User-specific files
 *.suo
