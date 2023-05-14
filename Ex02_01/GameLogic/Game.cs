@@ -1,6 +1,6 @@
 ﻿namespace Ex02_01
 {
-    public class Game
+    internal class Game
     {
         private enum eGameType
         {
@@ -20,11 +20,11 @@
         private bool m_IsPlayerWantsToQuit;
         private bool m_IsFirstPlayerMove;
         private Board m_Board = null;
-        private Player m_FirstPlayer = null;
-        private Player m_SecondPlayer = null;
+        private Player m_FirstPlayer;
+        private Player m_SecondPlayer;
         private UIDuringTheGame m_UIDuringTheGame = null;
 
-        public Game(int i_TypeOfGame, ref Board io_Board)
+        internal Game(int i_TypeOfGame, ref Board io_Board)
         {
             this.m_TypeOfGame = i_TypeOfGame;
             this.m_IsPlayerLosed = false;
@@ -37,7 +37,7 @@
             this.m_UIDuringTheGame = new UIDuringTheGame();
         }
 
-        public void Run()
+        internal void Run()
         {
             int row = -1, column = -1;
 
@@ -138,6 +138,8 @@
             if (m_Board.IsGameFinishedWithTie())
             {
                 m_UIDuringTheGame.PrintTieMessage();
+                m_FirstPlayer.Score++;
+                m_SecondPlayer.Score++;
                 m_IsTie = true;
                 isTie = true;
             }

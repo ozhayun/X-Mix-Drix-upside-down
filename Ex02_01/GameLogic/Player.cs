@@ -2,18 +2,18 @@
 
 namespace Ex02_01
 {
-    public class Player
+    internal struct Player
     {
         private char m_Sign;
         private int m_Score;
 
-        public Player(char i_Sign, int i_Score)
+        internal Player(char i_Sign, int i_Score)
         {
             m_Sign = i_Sign;
             m_Score = i_Score;
         }
 
-        public char Sign
+        internal char Sign
         {
             get
             {
@@ -26,7 +26,7 @@ namespace Ex02_01
             }
         }
 
-        public int Score
+        internal int Score
         {
             get
             {
@@ -39,7 +39,7 @@ namespace Ex02_01
             }
         }
 
-        public void SmarterComputerMove(ref Board io_Board, ref int io_Row, ref int io_Column)
+        internal void SmarterComputerMove(ref Board io_Board, ref int io_Row, ref int io_Column)
         {
             int i = 0;
 
@@ -70,7 +70,7 @@ namespace Ex02_01
             o_Column = i_Random.Next(0, i_BoardSize);
         }
 
-        public void HumanMove(UIDuringTheGame i_UI, ref Board io_Board, ref bool io_IsPlayerWantsToExit, ref int io_Row, ref int io_Column)
+        internal void HumanMove(UIDuringTheGame i_UI, ref Board io_Board, ref bool io_IsPlayerWantsToExit, ref int io_Row, ref int io_Column)
         {
             i_UI.GetRowAndColumnFromUserAndCheckQuiting(io_Board, ref io_Row, ref io_Column, ref io_IsPlayerWantsToExit);
 

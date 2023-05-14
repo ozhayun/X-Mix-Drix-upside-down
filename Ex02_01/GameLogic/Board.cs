@@ -1,18 +1,18 @@
 ﻿namespace Ex02_01
 {
-    public class Board
+    internal class Board
     {
         private const char k_BlankChar = ' ';
         private char[,] m_Board;
         private int m_CounterOfFullCells;
 
-        public Board()
+        internal Board(char[,] i_Board, int i_CounterOfFullCells)
         {
-            m_Board = null;
-            m_CounterOfFullCells = 0;
+            m_Board = i_Board;
+            m_CounterOfFullCells = i_CounterOfFullCells;
         }
 
-        public int BoardSize
+        internal int BoardSize
         {
             get
             {
@@ -20,7 +20,7 @@
             }
         }
 
-        public char[,] BoardMatrix
+        internal char[,] BoardMatrix
         {
             set
             {
@@ -29,7 +29,7 @@
             }
         }
 
-        public bool IsFoundEmptyCellThatNotClosedSequence(ref int io_Row, ref int io_Coulmn, char i_PlayerSign)
+        internal bool IsFoundEmptyCellThatNotClosedSequence(ref int io_Row, ref int io_Coulmn, char i_PlayerSign)
         {
             bool foundClearCellThatNotClosedSequence = false;
             for (int i = 0; i < BoardSize && !foundClearCellThatNotClosedSequence; i++)
@@ -48,7 +48,7 @@
             return foundClearCellThatNotClosedSequence;
         }
 
-        public bool IsThisCellCloseSequence(int i_Row, int i_Column, char i_UserSign)
+        internal bool IsThisCellCloseSequence(int i_Row, int i_Column, char i_UserSign)
         {
             bool isThisCellCloseSequence = false;
             AddPlayerSign(i_Row, i_Column, i_UserSign);
@@ -62,7 +62,7 @@
             return isThisCellCloseSequence;
         }
 
-        public void SetRowAndColumnToBeTheFirstClearCell(ref int io_Row, ref int io_Coulmn, char i_UserSign)
+        internal void SetRowAndColumnToBeTheFirstClearCell(ref int io_Row, ref int io_Coulmn, char i_UserSign)
         {
             bool foundClearCell = false;
 
@@ -81,7 +81,7 @@
             }
         }
 
-        public bool IsValidBoardSize(int i_BoardSizeToCheck)
+        internal bool IsValidBoardSize(int i_BoardSizeToCheck)
         {
             bool isValidBoardSize = false;
             if (i_BoardSizeToCheck >= 3 && i_BoardSizeToCheck <= 9)
@@ -92,17 +92,17 @@
             return isValidBoardSize;
         }
 
-        public bool IsRowAndColumnInRange(int i_Row, int i_Column)
+        internal bool IsRowAndColumnInRange(int i_Row, int i_Column)
         {
             return i_Row >= 0  && i_Row < BoardSize && i_Column >= 0 && i_Column < BoardSize;
         }
 
-        public bool IsThisCellClear(int i_Row, int i_Column)
+        internal bool IsThisCellClear(int i_Row, int i_Column)
         {
             return GetCellValueInBoard(i_Row, i_Column) == k_BlankChar;
         }
 
-        public bool IsGameFinishedWithLost(char i_PlayersSign, int i_Row, int i_Column)
+        internal bool IsGameFinishedWithLost(char i_PlayersSign, int i_Row, int i_Column)
         {
             bool isLose = false;
             if (isThereRowSequence(i_PlayersSign, i_Row) ||
@@ -189,17 +189,17 @@
             return isWinning;
         }
 
-        public bool IsGameFinishedWithTie()
+        internal bool IsGameFinishedWithTie()
         {
             return m_CounterOfFullCells == BoardSize * BoardSize;
         }
 
-        public char GetCellValueInBoard(int i_Row, int i_Column)
+        internal char GetCellValueInBoard(int i_Row, int i_Column)
         {
             return m_Board[i_Row, i_Column];
         }
 
-        public void AddPlayerSign(int i_Row, int i_Column, char i_UserSign)
+        internal void AddPlayerSign(int i_Row, int i_Column, char i_UserSign)
         {
             m_Board[i_Row, i_Column] = i_UserSign;
             m_CounterOfFullCells++;
@@ -211,7 +211,7 @@
             m_CounterOfFullCells--;
         }
 
-        public void ClearBoard()
+        internal void ClearBoard()
         {
             for (int i = 0; i < BoardSize; i++)
             {

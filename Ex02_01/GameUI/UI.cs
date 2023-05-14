@@ -2,25 +2,25 @@
 
 namespace Ex02_01
 {
-    public class UI
+    internal class UI
     {
-        public void Play()
+        internal void Play()
         {
-            Board board = new Board();
+            Board board = new Board(null, 0);
 
-            PrintStartMenu();
-            SetBoardFromUser(ref board);
-            Game game = new Game(GetTypeOfGameFromUser(), ref board);
+            printStartMenu();
+            setBoardFromUser(ref board);
+            Game game = new Game(getTypeOfGameFromUser(), ref board);
             game.Run();
-            PrintEndMenu();
+            printEndMenu();
         }
 
-        public void PrintStartMenu()
+        private void printStartMenu()
         {
             Console.WriteLine("Welcome to X Mix Drix Upside Down game");
         }
 
-        public void SetBoardFromUser(ref Board io_Board)
+        private void setBoardFromUser(ref Board io_Board)
         {
             int boardSize = 0;
             bool isValid = false;
@@ -49,7 +49,7 @@ namespace Ex02_01
             }
         }
 
-        public int GetTypeOfGameFromUser()
+        private int getTypeOfGameFromUser()
         {
             int gameType = 0;
             bool isValid = false;
@@ -79,7 +79,7 @@ namespace Ex02_01
             return gameType;
         }
 
-        private void PrintEndMenu()
+        private void printEndMenu()
         {
             Ex02.ConsoleUtils.Screen.Clear();
             Console.WriteLine("Goodbye!");

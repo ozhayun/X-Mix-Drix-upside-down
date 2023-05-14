@@ -2,9 +2,9 @@
 
 namespace Ex02_01
 {
-    public class UIDuringTheGame
+    internal class UIDuringTheGame
     {
-        public void PrintBoard(Board board)
+        internal void PrintBoard(Board board)
         {
             int boardSize = board.BoardSize;
 
@@ -55,7 +55,7 @@ namespace Ex02_01
             Console.WriteLine("=");
         }
 
-        public void GetRowAndColumnFromUserAndCheckQuiting(Board i_Board, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToQuit)
+        internal void GetRowAndColumnFromUserAndCheckQuiting(Board i_Board, ref int io_Row, ref int io_Column, ref bool io_IsPlayerWantsToQuit)
         {
             Console.WriteLine("Please enter your next move or Q to quit the game");
 
@@ -178,12 +178,12 @@ namespace Ex02_01
             return numberFromUser - 1;
         }
         
-        public void PrintLosingMessage(char i_LossingPlayerSign)
+        internal void PrintLosingMessage(char i_LossingPlayerSign)
         {
             Console.WriteLine($"Player {i_LossingPlayerSign} lost!!!");
         }
 
-        public bool IsUserWantNewGame()
+        internal bool IsUserWantNewGame()
         {
             bool userWantsNewGame = false;
             Console.WriteLine("Please enter Y to start a new game");
@@ -196,17 +196,17 @@ namespace Ex02_01
             return userWantsNewGame;
         }
 
-        public void PrintStartNewGameMessage()
+        internal void PrintStartNewGameMessage()
         {
             Console.WriteLine("Starting a new game");
         }
 
-        public void PrintTieMessage()
+        internal void PrintTieMessage()
         {
             Console.WriteLine("There is a TIE!!!");
         }
 
-        public void PrintScores(Player i_FirstPlayer, Player i_SecondPlayer)
+        internal void PrintScores(Player i_FirstPlayer, Player i_SecondPlayer)
         {
             Console.WriteLine($"Player: {i_FirstPlayer.Sign}, Score: {i_FirstPlayer.Score}");
             Console.WriteLine($"Player: {i_SecondPlayer.Sign}, Score: {i_SecondPlayer.Score}");
